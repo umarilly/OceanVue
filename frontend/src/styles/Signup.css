@@ -1,0 +1,448 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: "Raleway", sans-serif;
+    border: 0px;
+}
+
+/* Main Container */
+
+.signup-container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #e7e7e7;
+}
+
+/* Main Container - Left Side */
+
+.signup-container-left {
+    width: 45%;
+    height: auto;
+    display: flex;
+    justify-content: start;
+    align-self: flex-start;
+    flex-direction: column;
+    background: #e7e7e7;
+}
+
+.left-1 {
+    width: 30%;
+    height: 130px;
+    margin: 0px 10px 10px 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.left-1 a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.left-1 img {
+    width: 80%;
+}
+
+.left-2 {
+    width: 70%;
+    height: auto;
+    margin: -20px 20px 20px 20px;
+    display: flex;
+    align-self: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.left-2 img {
+    max-width: 100%;
+}
+
+.left-3 {
+    width: 40%;
+    height: auto;
+    align-self: center;
+    margin: 20px 20px 40px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.left-3-btn {
+    padding: 12px 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #526d82;
+    color: white;
+    box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25);
+    transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+}
+
+.left-3-btn:hover {
+    background-color: #44576a;
+    transform: translateY(-2px);
+    box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.3);
+}
+
+/* Main Container - Right Side */
+
+.signup-container-right {
+    width: 55%;
+    height: auto;
+    border-radius: 45px 0px 0px 45px;
+    background: #fff;
+    backdrop-filter: blur(2px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.signup-container-right-sub {
+    width: 90%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 20px 0px 50px 0px;
+}
+
+.signup-heading {
+    margin: 30px 0px 30px 0px;
+}
+
+.signup-form {
+    width: 100%;
+    max-width: 500px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    height: auto;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    display: flex;
+    flex-direction: column;
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.outside-form-input {
+    display: flex;
+    flex-direction: row;
+    background-color: #e7e7e7;
+}
+
+.img-box {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    margin: 15px;
+}
+
+.form-input {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    font-size: 16px;
+    border-radius: 5px;
+    background: #e7e7e7;
+    outline: none;
+}
+
+.pre-btn-signup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-button {
+    padding: 10px 20px;
+    background-color: #07689f;
+    color: #fff;
+    width: 50%;
+    height: auto;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.form-button:hover {
+    background-color: #07689f;
+}
+
+/*   
+    Sign Up with Google
+    Already Have an Account
+*/
+
+.outer-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.div-for-google-btn {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.google-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 40%;
+    height: auto;
+    font-size: 16px;
+    padding: 10px;
+    background-color: #db4437;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.google-button:hover {
+    background-color: #c32f27;
+}
+
+.Extra-out-google-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.text-for-already-account {
+    margin: 18px;
+}
+
+.already-account {
+    width: 40%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.already-account button {
+    padding: 12px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #538aab;
+    color: white;
+    box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25);
+    transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+    width: 100%;
+    height: auto;
+}
+
+.already-account :hover {
+    background-color: #43779a;
+    transform: translateY(-2px);
+    box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.3);
+}
+
+/*   
+    Media Queries
+*/
+
+@media screen and (max-width: 1100px) {
+    .signup-container-left {
+        width: 45%;
+        height: auto;
+        display: flex;
+        justify-content: start;
+        align-self: flex-start;
+        flex-direction: column;
+        background: #e7e7e7;
+    }
+
+    .left-1 {
+        width: 40%;
+        height: auto;
+        display: flex;
+        justify-content: start;
+        align-items: start;
+        margin-top: 25px;
+        margin-bottom: 25px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .left-1 a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .left-1 img {
+        width: 100%;
+    }
+
+    .left-2 {
+        width: 90%;
+        height: auto;
+        margin: 0px 20px 20px 20px;
+        display: flex;
+        align-self: center;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .left-2 img {
+        max-width: 100%;
+    }
+
+    .left-3 {
+        width: 100%;
+        height: auto;
+        align-self: center;
+        margin: 20px 20px 40px 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .left-3-btn {
+        padding: 12px 20px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+    }
+
+    .div-for-google-btn {
+        width: 80%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .google-button {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .signup-container {
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #e7e7e7;
+        flex-direction: column;
+    }
+
+    .signup-container-left {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .left-1 {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .left-1 a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .left-1 img {
+        width: 80%;
+    }
+
+    .left-2 {
+        display: none;
+    }
+
+    .left-3 {
+        display: none;
+    }
+
+    .signup-container-right {
+        margin-top: 20px;
+        margin-bottom: 40px;
+        width: 90%;
+        border-radius: 45px 45px 45px 45px;
+        height: auto;
+    }
+
+    .signup-container-right-sub {
+        width: 90%;
+        height: auto;
+    }
+
+    .signup-heading {
+        margin: 50px 0px 50px 0px;
+    }
+
+    .pre-btn-signup button {
+        width: 100%;
+    }
+
+    .div-for-google-btn {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .google-button {
+        width: 90%;
+    }
+
+    .text-for-already-account {
+        margin: 30px;
+    }
+
+    .already-account {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: auto;
+    }
+
+    .already-account button {
+        padding: 12px 20px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        background-color: #538aab;
+        color: white;
+        box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25);
+        transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+        width: 100%;
+        height: auto;
+    }
+}
