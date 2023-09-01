@@ -1,9 +1,7 @@
 
 import React from 'react';
-import { useState } from 'react';
-import { Link as RouterLink , Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { login } from '../../actions/auth';
+// import { useState } from 'react';
+import { Link as RouterLink } from 'react-router-dom';
 
 // CSS Files
 import '../../styles/Login.css';
@@ -12,23 +10,7 @@ import mainLogo from '../../images/main-logo.png';
 import Lock from '../../images/lock.png';
 import Message from '../../images/message.png';
 
-const Login = ( { login } ) => {
-
-    const [formData , setFormData ] = useState({
-        email: '',
-        password: ''
-    });
-
-    const { email , password } = formData;
-    const onChange = e => setFormData({...formData, [e.target.name]: e.target.value})
-    const onSubmit = e => {
-        e.preventDefault();
-        
-        login(email,password)
-    }
-
-    // Is the user authenticated
-    // Redirect to Home
+const Login = () => {
 
     return (
         <>
@@ -48,19 +30,18 @@ const Login = ( { login } ) => {
                         </div>
 
                         <div className='login-container-box2-form' >
-                            <form onSubmit={e => onSubmit(e)} >
+                            <form>
                                 <div className='form-group-login'>
                                     <label htmlFor='input1' className='form-label-login'>Email</label>
                                     <div className='outer-input-class'>
                                         <div className='img-box-login' > <img src={Message} alt="" /> </div>
                                         <input 
-                                            type='email' 
-                                            value = {email} 
+                                            type='email'
                                             className='form-input-login' 
                                             id='input1' 
                                             name='input1' 
                                             placeholder='Please write a valid Email' 
-                                            onChange={e => onChange(e)} 
+                                            
                                             required
                                             />
                                     </div>
@@ -72,11 +53,11 @@ const Login = ( { login } ) => {
                                         <input 
                                             type='password' 
                                             className='form-input-login' 
-                                            value = {password} 
+                                            
                                             id='input2' 
                                             name='input2' 
                                             placeholder='Please write your password' 
-                                            onChange={e => onChange(e)} 
+                                            
                                             required
                                             />
                                     </div>
@@ -130,5 +111,4 @@ const Login = ( { login } ) => {
 //     Is authenticated
 // });
 
-// export default Login;
-export default connect(null , {login})(Login);
+export default Login;
