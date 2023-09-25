@@ -56,7 +56,7 @@
     width: 90%;
     height: 650px;
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     align-items: flex-start;
     flex-direction: column;
 }
@@ -90,6 +90,20 @@
     display: flex;
     flex-direction: row;
     background-color: #e7e7e7;
+}
+
+.forgot-password {
+    margin: 10px 10px 15px 10px;
+}
+
+.forgot-password-a {
+    text-decoration: none !important;
+
+}
+
+.forgot-password-b {
+    cursor: pointer;
+    font-weight: 700;
 }
 
 .img-box-login {

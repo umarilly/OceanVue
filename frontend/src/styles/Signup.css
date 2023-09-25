@@ -23,7 +23,7 @@
     width: 45%;
     height: auto;
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     align-self: flex-start;
     flex-direction: column;
     background: #e7e7e7;
@@ -160,6 +160,48 @@
     outline: none;
 }
 
+/* Add these styles for the password strength meter */
+.password-strength {
+    height: 10px; /* Increase the height for better visibility */
+    background-color: #e7e7e7;
+    margin: 5px;
+}
+
+.password-strength-meter {
+    height: 100%;
+    transition: width 0.3s;
+}
+
+.strength-0 {
+    width: 0%;
+    background-color: #ff0000;
+    /* Weakest (red) */
+}
+
+.strength-1 {
+    width: 25%;
+    background-color: #ff6600;
+    /* Weak (orange) */
+}
+
+.strength-2 {
+    width: 50%;
+    background-color: #ffcc00;
+    /* Moderate (yellow) */
+}
+
+.strength-3 {
+    width: 75%;
+    background-color: #99ff00;
+    /* Strong (green) */
+}
+
+.strength-4 {
+    width: 100%;
+    background-color: #00cc00;
+    /* Strongest (dark green) */
+}
+
 .pre-btn-signup {
     display: flex;
     justify-content: center;
@@ -169,6 +211,19 @@
 .form-button {
     padding: 10px 20px;
     background-color: #07689f;
+    color: #fff;
+    width: 50%;
+    height: auto;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.form-button:disabled {
+    padding: 10px 20px;
+    background-color: #2c3f49 !important;
     color: #fff;
     width: 50%;
     height: auto;
@@ -274,7 +329,7 @@
         width: 45%;
         height: auto;
         display: flex;
-        justify-content: start;
+        justify-content: flex-start;
         align-self: flex-start;
         flex-direction: column;
         background: #e7e7e7;
@@ -284,8 +339,8 @@
         width: 40%;
         height: auto;
         display: flex;
-        justify-content: start;
-        align-items: start;
+        justify-content: flex-start;
+        align-items: flex-start;
         margin-top: 25px;
         margin-bottom: 25px;
         margin-left: auto;

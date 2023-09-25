@@ -1,16 +1,110 @@
-import React from 'react'
-// Importing the CSS files - Style Files
+import React, { useState } from 'react';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import { auth, checkIfEmailExists } from '../../Firebase';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword ,updateProfile, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import zxcvbn from 'zxcvbn';
 import '../../styles/Signup.css';
-// Importing the Images files - Images Files
 import mainLogo from '../../images/main-logo.png';
 import signupImg from '../../images/signup-img.png';
 import Lock from '../../images/lock.png';
 import Message from '../../images/message.png';
 import Profile from '../../images/profile.png';
 
-import { Link as RouterLink } from 'react-router-dom';
+const handleGoogleSignUp = async () => {
+    const provider = new GoogleAuthProvider();
+
+    try {
+        // Sign in with Google provider to get user information
+        const result = await signInWithPopup(auth, provider);
+
+        // Check if the user already exists with the same email
+        const emailExists = await checkIfEmailExists(result.user.email);
+
+        if (emailExists) {
+            // User already exists, show a message or take appropriate action
+            console.log('User already exists with this email.');
+            // You can also sign in the user here if they already have an account
+            await signInWithEmailAndPassword(auth, result.user.email, 'password'); // Use a temporary password or another mechanism
+        } else {
+            // User doesn't exist, proceed with sign-up logic
+            // You can create a new account with the Google user information here if needed
+            console.log('User signed up with Google:', result.user);
+        }
+    } catch (error) {
+        // Handle sign-up error
+        console.error('Google sign-up error:', error);
+    }
+};
+
 
 const Signup = () => {
+
+    const navigate = useNavigate();
+
+    const [formValues, setFormValues] = useState({
+        Username: "",
+        Email: "",
+        Password: "",
+        ConfirmPassword: "",
+    });
+
+    const [errorMsg, setErrorMsg] = useState("");
+
+    const [passwordStrength, setPasswordStrength] = useState(0);
+
+    const checkPasswordStrength = (password) => {
+        const result = zxcvbn(password);
+        return result.score;
+    };
+
+    const handleInputChange = (event) => {
+        const { name, value } = event.target;
+        setFormValues((prev) => ({
+            ...prev,
+            [name]: value,
+        }));
+        setErrorMsg('');
+
+        if (name === 'Password') {
+            const strength = checkPasswordStrength(value);
+            setPasswordStrength(strength);
+        }
+    };
+
+    const handleSubmission = async (event) => {
+        event.preventDefault(); // Prevent default form submission behavior.
+
+        if (!formValues.Username || !formValues.Email || !formValues.Password) {
+            setErrorMsg("Please fill in all the required fields.");
+        } else if (formValues.Password !== formValues.ConfirmPassword) {
+            setErrorMsg("Passwords do not match.");
+        } else {
+            const strength = checkPasswordStrength(formValues.Password);
+            if (strength < 3) {
+                setErrorMsg("Password is too weak. Please choose a stronger password.");
+            } else {
+                try {
+                    // Create the user with email and password
+                    const userCredential = await createUserWithEmailAndPassword(auth, formValues.Email, formValues.Password);
+
+                    // Set the user's display name
+                    await updateProfile(userCredential.user, { displayName: formValues.Username });
+                    console.log(formValues);
+                    // Clear form values
+                    setFormValues({
+                        Username: "",
+                        Email: "",
+                        Password: "",
+                        ConfirmPassword: "",
+                    });
+                    navigate('/');
+                } catch (error) {
+                    setErrorMsg(error.message);
+                }
+            }
+        }
+    };
+
     return (
         <div className='signup-container' >
             <div className='signup-container-left'>
@@ -34,46 +128,91 @@ const Signup = () => {
                         <h1> Create Account </h1>
                     </div>
 
-                    <form className='signup-form'>
+                    <form className='signup-form' onSubmit={handleSubmission}>
 
                         <div className='form-group'>
                             <label htmlFor='input1' className='form-label'>Name</label>
                             <div className='outside-form-input'>
                                 <div className='img-box' > <img src={Profile} alt="" /> </div>
-                                <input type='text' className='form-input' id='input1' name='input1' placeholder='Please write your name' />
+                                <input
+                                    type='text'
+                                    className='form-input'
+                                    id='input1'
+                                    name='Username'
+                                    placeholder='Please Enter your name'
+                                    onChange={handleInputChange}
+                                />
                             </div>
                         </div>
                         <div className='form-group'>
                             <label htmlFor='input2' className='form-label'>Email</label>
                             <div className='outside-form-input'>
                                 <div className='img-box' > <img src={Message} alt="" /> </div>
-                                <input type='email' className='form-input' id='input2' name='input2' placeholder='Please write a valid Email' />
+                                <input
+                                    type='email'
+                                    className='form-input'
+                                    id='input2'
+                                    name='Email'
+                                    placeholder='Please write a valid Email'
+                                    onChange={handleInputChange}
+                                />
                             </div>
                         </div>
                         <div className='form-group'>
                             <label htmlFor='input3' className='form-label'>Password</label>
                             <div className='outside-form-input'>
                                 <div className='img-box' > <img src={Lock} alt="" /> </div>
-                                <input type='password' className='form-input' id='input3' name='input3' placeholder='Please write your password' />
+                                <input
+                                    type='password'
+                                    className='form-input'
+                                    id='input3'
+                                    name='Password'
+                                    placeholder='Please write your password'
+                                    onChange={handleInputChange}
+                                />
                             </div>
+                        </div>
+                        <div>
+                            {formValues.Password && (
+                                <div className='password-strength'>
+                                    <div className={`password-strength-meter strength-${passwordStrength}`}></div>
+                                </div>
+                            )}
                         </div>
                         <div className='form-group'>
                             <label htmlFor='input4' className='form-label'>Re-Write Password</label>
                             <div className='outside-form-input'>
                                 <div className='img-box' > <img src={Lock} alt="" /> </div>
-                                <input type='password' className='form-input' id='input4' name='input4' placeholder='Please re-write your password' />
+                                <input
+                                    type='password'
+                                    className='form-input'
+                                    id='input4'
+                                    name='ConfirmPassword'
+                                    placeholder='Please re-write your password'
+                                    value={formValues.ConfirmPassword}
+                                    onChange={handleInputChange}
+                                />
                             </div>
-                            
+
+                        </div>
+                        <div>
+                            <div>
+                                <h4> {errorMsg} </h4>
+                            </div>
                         </div>
                         <div className='pre-btn-signup' >
-                            <button type='submit' className='form-button'> Sign Up </button>
+                            <button
+                                type='submit'
+                                className='form-button'
+                            > Sign Up
+                            </button>
                         </div>
                     </form>
 
                     <div className='outer-form' >
                         <h3 style={{ color: 'black', margin: '10px 30px 30px 30px' }}> OR </h3>
                         <div className='div-for-google-btn' >
-                            <button className='google-button'>
+                            <button className='google-button' onClick={handleGoogleSignUp}>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
                                     <path d="M24.6725 12.7851C24.6736 11.9333 24.6011 11.083 24.4558 10.2435H12.5861V15.0575H19.3845C19.2454 15.8264 18.9509 16.5593 18.5189 17.2121C18.0869 17.8649 17.5262 18.4241 16.8707 18.8559V21.9808H20.9281C23.3038 19.8055 24.6725 16.5887 24.6725 12.7851Z" fill="#4285F4" />
                                     <path d="M12.586 25C15.9826 25 18.8425 23.8924 20.928 21.9828L16.8706 18.858C15.7414 19.6183 14.2869 20.0523 12.586 20.0523C9.30302 20.0523 6.51652 17.8545 5.52009 14.8929H1.34033V18.1132C2.38792 20.1834 3.99429 21.9237 5.98009 23.1398C7.96589 24.3558 10.253 24.9999 12.586 25Z" fill="#34A853" />
@@ -103,3 +242,6 @@ const Signup = () => {
 }
 
 export default Signup
+
+
+
