@@ -28,7 +28,7 @@ function Dashboard() {
     }
 
     const classifyShipPage = () => {
-        navigate('/dash');
+        navigate('/classifyship');
     }
 
     const userProfile = () => {
