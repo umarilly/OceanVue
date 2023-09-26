@@ -13,7 +13,7 @@ const AudioClassification = () => {
         console.log('Form Data:', formData);
 
         try {
-            const response = await fetch('http://10.97.8.112:8088/', {
+            const response = await fetch('http://localhost:8088/', {
                 method: 'POST',
                 body: formData,
             });
