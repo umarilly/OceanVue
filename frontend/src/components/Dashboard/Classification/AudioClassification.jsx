@@ -36,11 +36,28 @@ const AudioClassification = () => {
 
     const displayClassificationResult = () => {
         console.log('Received classification data:', classificationData);
-
-        const sortedKeys = Object.keys(classificationData).sort(
-            (a, b) => classificationData[b] - classificationData[a]
+    
+        if (classificationData.error) {
+            return (
+                <Box mt={4}>
+                    <Typography variant="h6">Classification Result:</Typography>
+                    <Paper elevation={3} style={{ padding: '16px' }}>
+                        <Typography variant="body1" color="error">
+                            {classificationData.error}
+                        </Typography>
+                    </Paper>
+                </Box>
+            );
+        }
+    
+        if (!classificationData.predictions) {
+            return null; // Don't display anything if predictions are not available yet
+        }
+    
+        const sortedKeys = Object.keys(classificationData.predictions).sort(
+            (a, b) => classificationData.predictions[b] - classificationData.predictions[a]
         );
-
+    
         return (
             <Box mt={4}>
                 <Typography variant="h6">Classification Result:</Typography>
@@ -49,15 +66,20 @@ const AudioClassification = () => {
                         {sortedKeys.map((key) => (
                             <Grid item xs={6} key={key}>
                                 <Paper elevation={0} variant="outlined" style={{ padding: '8px' }}>
-                                    {key}: {(classificationData[key] * 100).toFixed(2)}%
+                                    {key}: {(classificationData.predictions[key] * 100).toFixed(2)}%
                                 </Paper>
                             </Grid>
                         ))}
                     </Grid>
                 </Paper>
+    
+                {/* Display the image */}
+                <img src={`data:image/png;base64, ${classificationData.base64_image}`} alt="Classification" />
             </Box>
         );
     };
+    
+    
 
     return (
         <Container maxWidth="md" mt={5}>
@@ -79,6 +101,7 @@ const AudioClassification = () => {
                 </Button>
             </form>
             {resultVisible && displayClassificationResult()}
+
         </Container>
     );
 };

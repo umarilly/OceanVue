@@ -8,13 +8,23 @@ from fastai.vision.all import *
 from flask_cors import CORS
 import torchaudio
 import pathlib
+import matplotlib
+import numpy as np
+from PIL import Image
+import base64
+matplotlib.use('Agg')
+import base64
+import io
+from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
+from matplotlib.figure import Figure
+import matplotlib.pyplot as plt
 
 temp = pathlib.PosixPath
 pathlib.PosixPath = pathlib.WindowsPath
 
 # Weights, edit this.
 weights_path = Path('./model/')
-weights = 'at'
+weights = 'model_final'
 
 sr = 32000
 imgsize = 460
@@ -75,9 +85,21 @@ def wavToSpecs(wavs : torch.Tensor, hf_idx=0):
     lf1 = normSpec(lf[imgsize:imgsize*2,:imgsize])
     hf = stft_hf(wavs[:,hf_idx:hf_idx+rng_hf])[0]
     hf = normSpec(hf[12:imgsize+12,:imgsize])
+
+    spec2 = torch.stack((lf0,lf1,hf),0)
     return torch.stack((lf0,lf1,hf),0)
 
+def tensor_to_base64_image(tensor):
+    
+    plt.imshow(tensor[0].cpu())
 
+    # Encode the image as base64
+    buffer = io.BytesIO()
+    plt.savefig(buffer, format='png')  # Save the image to the buffer in PNG format
+    buffer.seek(0)
+    base64_image = base64.b64encode(buffer.read()).decode('utf-8')
+
+    return base64_image
 
 class Spectrogram(TensorImageBase):
     """Type to represent a spectogram which knows show itself"""
@@ -118,7 +140,6 @@ def get_wavs(p : Path) :
     return get_files(p,'.wav')
 
 def label_func(p : Path):
-    if PurePath(p).parent.name == "AmbientSE": return []
     return [PurePath(p).parent.parent.name]
 
 def predTensor(p, overlap=0.5):
@@ -157,7 +178,7 @@ def prettyPred(pbatch):
     return {k: v for k,v in zip(learn.dls.vocab, p)}  
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})  # Enable CORS for your React app's origin
+CORS(app, resources={r"/*": {"origins": ["http://localhost:3000"]}})  # Enable CORS for your React app's origin
 
 @app.route('/', methods=['POST'])
 def classify():
@@ -173,15 +194,30 @@ def classify():
             file.save(tmp)
             fname = Path(tmp.name)
             print('file name :: ',file, ' path :: ',ext, 'fname :: ',fname)
+            base64_image=0
             # Call your classification logic here and get the result
             p = prettyPred(learn.predict_batch(predTensor(fname)))
-            print('P here :: ',p)
-            # Optionally, you can remove the temporary file after processing
-            return jsonify(p)
+            print('P here : ',p)
+            
+            read_file = readWav(fname)
+            spec_file = wavToSpecs(read_file)
+
+            base64_conv_img = tensor_to_base64_image(spec_file)
+            print(spec_file)
+
+            # Send the base64-encoded image and predictions to the frontend
+            response_data = {
+                'predictions': p,
+                'base64_image': base64_conv_img  # Add this line to include the base64 image
+            }
+
+            return jsonify(response_data)
             os.remove(fname)
 
-    except:
-            return jsonify({'error':'Something failed..'})
+    except Exception as e:
+        print('Error :: ',str(e))
+        return jsonify({'error': 'Something failed: ' + str(e)})
+
 
 if __name__ == "__main__":
     app.run(port=8088, host='0.0.0.0')
