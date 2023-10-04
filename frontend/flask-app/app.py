@@ -203,7 +203,7 @@ def classify():
             spec_file = wavToSpecs(read_file)
 
             base64_conv_img = tensor_to_base64_image(spec_file)
-            print(spec_file)
+            #print(spec_file)
 
             # Send the base64-encoded image and predictions to the frontend
             response_data = {
