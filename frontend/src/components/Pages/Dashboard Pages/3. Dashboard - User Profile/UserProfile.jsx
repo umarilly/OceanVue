@@ -1,9 +1,11 @@
 
 
-import React, { useState, useEffect } from 'react'
-import "./UserProfile.scss"
-import Sidebar from "../../../Dashboard/Sidebar/Sidebar"
-import Navbar from "../../../Dashboard/Navbar/Navbar"
+import React, { useState, useEffect } from 'react';
+import "./UserProfile.scss";
+import Sidebar from "../../../Dashboard/Sidebar/Sidebar";
+import Navbar from "../../../Dashboard/Navbar/Navbar";
+import UserProfileComp from "../../../Dashboard/User Profile/UserProfileComp";
+
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../../../../Firebase';
 
@@ -30,13 +32,7 @@ const UserProfile = () => {
                     <Sidebar />
                     <div className="homeContainer">
                         <Navbar />
-                        
-                        <div className="widgets">
-                            
-                        </div>
-
-                        
-
+                        <UserProfileComp/>
                     </div>
                 </div>
                 </>

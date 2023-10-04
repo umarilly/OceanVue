@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
+
 import { auth } from '../../Firebase';
 import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth'; 
+
 import '../../styles/Login.css';
 import mainLogo from '../../images/main-logo.png';
 import Lock from '../../images/lock.png';

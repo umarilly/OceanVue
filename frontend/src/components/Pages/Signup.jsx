@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
-import { auth, checkIfEmailExists } from '../../Firebase';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword ,updateProfile, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+
+import { doc, setDoc } from 'firebase/firestore';
+import { auth, checkIfEmailExists, db } from '../../Firebase';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+
 import zxcvbn from 'zxcvbn';
 import '../../styles/Signup.css';
 import mainLogo from '../../images/main-logo.png';
@@ -72,8 +75,8 @@ const Signup = () => {
     };
 
     const handleSubmission = async (event) => {
-        event.preventDefault(); // Prevent default form submission behavior.
-
+        event.preventDefault();
+    
         if (!formValues.Username || !formValues.Email || !formValues.Password) {
             setErrorMsg("Please fill in all the required fields.");
         } else if (formValues.Password !== formValues.ConfirmPassword) {
@@ -86,10 +89,20 @@ const Signup = () => {
                 try {
                     // Create the user with email and password
                     const userCredential = await createUserWithEmailAndPassword(auth, formValues.Email, formValues.Password);
-
+    
                     // Set the user's display name
                     await updateProfile(userCredential.user, { displayName: formValues.Username });
-                    console.log(formValues);
+    
+                    // Create a user document in Firestore
+                    const userDocRef = doc(db, 'Users', userCredential.user.uid);
+                    const userData = {
+                        username: formValues.Username,
+                        email: formValues.Email,
+                        password: formValues.Password,
+
+                    };
+                    await setDoc(userDocRef, userData);
+    
                     // Clear form values
                     setFormValues({
                         Username: "",
@@ -97,6 +110,7 @@ const Signup = () => {
                         Password: "",
                         ConfirmPassword: "",
                     });
+    
                     navigate('/');
                 } catch (error) {
                     setErrorMsg(error.message);
@@ -104,6 +118,8 @@ const Signup = () => {
             }
         }
     };
+    
+
 
     return (
         <div className='signup-container' >

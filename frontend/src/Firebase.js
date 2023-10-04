@@ -26,4 +26,4 @@ const checkIfEmailExists = async (email) => {
     return !querySnapshot.empty;
 };
 
-export { app, auth, checkIfEmailExists };
+export { app, auth, db , checkIfEmailExists };
