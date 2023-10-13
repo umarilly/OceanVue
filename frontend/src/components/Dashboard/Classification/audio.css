@@ -1,0 +1,60 @@
+/* CSS for the main container */
+.grid-container {
+    display: flex;
+    background-color: rgb(245, 245, 245); 
+    padding: 10px; 
+    margin: 22px 30px 15px 20px;
+  }
+
+.audio-upload-container {
+    background-color: #f5f5f5;    
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(228, 228, 228, 0.1);
+    padding: 20px;
+    text-align: center;
+    max-width: 400px;
+    max-height: 150px;
+    background-color: rgb(255, 255, 255); 
+    text-align: center; 
+            
+  }
+  
+/* CSS for the card container */
+.card {
+    
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(221, 221, 221, 0.1);
+    margin-bottom: 10px; /* Adjust as needed */
+    padding: 10px;
+  }
+  
+  /* CSS for the card body */
+  .card-body {
+    padding: 10px; /* Adjust as needed */
+  }
+  
+  /* CSS for the individual items within the card body */
+  .card-body .mb-2 {
+    margin-bottom: 10px; /* Adjust as needed */
+  }
+  
+  /* CSS for the text content within the items */
+  .card-body p {
+    margin: 0;
+    font-size: 16px; /* Adjust as needed */
+    color: #333; /* Adjust text color as needed */
+  }
+  
+  /* CSS for the percentage */
+  .card-body p span {
+    font-weight: bold;
+    margin-left: 5px; /* Adjust as needed */
+  }
+
+  .result-display-container{
+    background-color: #f5f5f5;
+    background-color: rgb(255, 255, 255); 
+    min-width: 400px;
+    margin-left: 20px;
+       /* Add your styling for this container as needed */
+  }

@@ -1,7 +1,5 @@
-
-
 import React, { useState } from 'react';
-import { Container, Typography, Box, Button, Paper, Grid } from '@mui/material';
+import './audio.css'
 
 const AudioClassification = () => {
     const [resultVisible, setResultVisible] = useState(false);
@@ -36,73 +34,92 @@ const AudioClassification = () => {
 
     const displayClassificationResult = () => {
         console.log('Received classification data:', classificationData);
-    
+
         if (classificationData.error) {
             return (
-                <Box mt={4}>
-                    <Typography variant="h6">Classification Result:</Typography>
-                    <Paper elevation={3} style={{ padding: '16px' }}>
-                        <Typography variant="body1" color="error">
-                            {classificationData.error}
-                        </Typography>
-                    </Paper>
-                </Box>
+                <div className="mt-4">
+                    <h6>Classification Result:</h6>
+                    <div className="alert alert-danger">
+                        {classificationData.error}
+                    </div>
+                </div>
             );
         }
-    
+
         if (!classificationData.predictions) {
             return null; // Don't display anything if predictions are not available yet
         }
-    
+
         const sortedKeys = Object.keys(classificationData.predictions).sort(
             (a, b) => classificationData.predictions[b] - classificationData.predictions[a]
         );
-    
+
         return (
-            <Box mt={4}>
-                <Typography variant="h6">Classification Result:</Typography>
-                <Paper elevation={3} style={{ padding: '16px' }}>
-                    <Grid container spacing={2}>
+            <div className="mt-4">
+                <h6>Classification Result:</h6>
+                <div className="card">
+                    <div className="card-body">
                         {sortedKeys.map((key) => (
-                            <Grid item xs={6} key={key}>
-                                <Paper elevation={0} variant="outlined" style={{ padding: '8px' }}>
+                            <div className="mb-2" key={key}>
+                                <p>
                                     {key}: {(classificationData.predictions[key] * 100).toFixed(2)}%
-                                </Paper>
-                            </Grid>
+                                </p>
+                            </div>
                         ))}
-                    </Grid>
-                </Paper>
-    
-                {/* Display the image */}
-                <img src={`data:image/png;base64, ${classificationData.base64_image}`} alt="Classification" />
-            </Box>
+                    </div>
+                </div>
+
+                
+            </div>
         );
     };
+
+    // Add this code within your component function
+    const handleFileInputChange = (event) => {
+        const fileInput = event.target;
+        const customLabel = fileInput.nextElementSibling; // Get the next sibling, which is the label element
     
+        if (fileInput.files.length > 0) {
+        customLabel.setAttribute('data-file-name', fileInput.files[0].name);
+        } else {
+        customLabel.setAttribute('data-file-name', 'No file chosen');
+        }
+    };
     
+    // Add this as the onChange handler for the file input element
+    
+  
 
     return (
-        <Container maxWidth="md" mt={5}>
-            <Typography variant="h4" align="center" gutterBottom>
-                Audio Classification
-            </Typography>
-            <form onSubmit={handleSubmit} encType="multipart/form-data" className="text-center">
-                <Box mb={3}>
-                    <Typography variant="subtitle1">Select an audio file (.wav)</Typography>
+        <>
+        <div className='grid-container'>
+            <div className="audio-upload-container">
+                <h4 className="text-center">Audio Classification</h4>
+                <form onSubmit={handleSubmit} encType="multipart/form-data" className="">
+                <div className="mb-3">
+                    <p>Select an audio file (.wav)</p>
                     <div className="custom-file">
-                        <input type="file" className="custom-file-input" id="audioFile" name="file" accept=".wav" required />
-                        <label className="custom-file-label" htmlFor="audioFile">
-                            Choose file
-                        </label>
+                    <input type="file" className="custom-file-input" id="audioFile" name="file" accept=".wav" required />
+                    <label className="" htmlFor="audioFile" data-file-name="No file chosen">
+                        
+                    </label>
                     </div>
-                </Box>
-                <Button type="submit" variant="contained" color="primary">
+                </div>
+                <button type="submit" className="">
                     Classify
-                </Button>
-            </form>
-            {resultVisible && displayClassificationResult()}
+                </button>
+                </form>
+            </div>
+            <div className="result-display-container">
+                {resultVisible && displayClassificationResult()}
+            </div>
+            </div>
+            <div>
+                {/* Display the image */}
+                <img src={`data:image/png;base64, ${classificationData.base64_image}`} alt="Classification" />
+            </div>
+        </>
 
-        </Container>
     );
 };
 
