@@ -1,6 +1,7 @@
 # app.py
 import os
 from pathlib import Path
+import main
 import torch
 import tempfile
 from flask import Flask, request, jsonify, render_template
@@ -14,13 +15,6 @@ from PIL import Image
 import base64
 matplotlib.use('Agg')
 import base64
-import io
-from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
-from matplotlib.figure import Figure
-import matplotlib.pyplot as plt
-
-temp = pathlib.PosixPath
-pathlib.PosixPath = pathlib.WindowsPath
 
 # Weights, edit this.
 weights_path = Path('./model/')
@@ -89,9 +83,8 @@ def wavToSpecs(wavs : torch.Tensor, hf_idx=0):
     spec2 = torch.stack((lf0,lf1,hf),0)
     return torch.stack((lf0,lf1,hf),0)
 
-def tensor_to_base64_image(tensor, figsize=(3,3)):
+def tensor_to_base64_image(tensor):
     
-    plt.figure(figsize=figsize)
     plt.imshow(tensor[0].cpu())
 
     # Encode the image as base64
@@ -99,8 +92,6 @@ def tensor_to_base64_image(tensor, figsize=(3,3)):
     plt.savefig(buffer, format='png')  # Save the image to the buffer in PNG format
     buffer.seek(0)
     base64_image = base64.b64encode(buffer.read()).decode('utf-8')
-
-    plt.close()
 
     return base64_image
 
@@ -179,49 +170,3 @@ learn = load_learner(weights_path / weights)
 def prettyPred(pbatch):
     p = torch.mean(pbatch[0]*(pbatch[1]+ 0.0* ~pbatch[1]) ,0).tolist()
     return {k: v for k,v in zip(learn.dls.vocab, p)}  
-
-app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": [ "http://192.168.220.1:3000", "http://172.30.176.1:3000", "http://10.97.10.34:3000", "http://192.168.253.1:3000/"]}})  # Enable CORS for your React app's origin
-
-@app.route('/', methods=['POST'])
-def classify():
-    print('Data Recieved.')
-    if 'file' not in request.files:
-        return jsonify({'error':'no file element uploaded'})
-    print('file recieved')
-    file = request.files['file']
-    ext = Path(file.filename).suffix
-
-    try: 
-        # Save the uploaded file to a temporary location
-        with tempfile.NamedTemporaryFile(suffix='.'+ext, delete=False) as tmp:
-            file.save(tmp)
-            fname = Path(tmp.name)
-            print('file name :: ',file, ' path :: ',ext, 'fname :: ',fname)
-            base64_image=0
-            # Call your classification logic here and get the result
-            p = prettyPred(learn.predict_batch(predTensor(fname)))
-            print('P here : ',p)
-            
-            read_file = readWav(fname)
-            spec_file = wavToSpecs(read_file)
-
-            base64_conv_img = tensor_to_base64_image(spec_file)
-            #print(spec_file)
-
-            # Send the base64-encoded image and predictions to the frontend
-            response_data = {
-                'predictions': p,
-                'base64_image': base64_conv_img  # Add this line to include the base64 image
-            }
-
-            return jsonify(response_data)
-            os.remove(fname)
-
-    except Exception as e:
-        print('Error :: ',str(e))
-        return jsonify({'error': 'Something failed: ' + str(e)})
-
-
-if __name__ == "__main__":
-    app.run(port=8088, host='0.0.0.0')
