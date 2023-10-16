@@ -10,7 +10,7 @@
 
 /* Audio Upload Section */
 .audio-upload-container {
-  background-color: #f7f7f7;
+  background-color: #e5dfdf;
   border-radius: 10px;
   padding: 20px;
   text-align: center;
@@ -74,10 +74,131 @@
 
 
 /* result container */
+
+.result-container{
+  border: 1px solid red;
+  margin: 22px 30px 15px 0px;
+}
+
+
 .result-display-container
 {
   border: 1px solid red;
 }
+
+
+/* test classification results */
+
+/* Styling for the outer container */
+/* Styling for the outer container */
+.classification-results-container-a {
+  display: flex;
+  flex-direction: row;
+   /* Adjust the space between elements */
+  padding: 20px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  margin: 10px;
+}
+
+/* Styling for the inner divs */
+.most-similar-category,
+.other-categories {
+  text-align: left; /* Align content to the left */
+  margin-right: 10px;
+}
+
+/* Define custom space between inner divs */
+.most-similar-category {
+  margin-right: 10px; /* Adjust the space as needed */
+}
+
+/* Styling for the "Most Similar Category" div */
+.most-similar-category {
+  
+  padding: 10px;
+  background-color: #dbdbdb; /* Example background color */
+  border: 1px solid #ffffff; /* Example border color */
+  border-radius: 5px;
+  height: 100%;
+  width: 400px;
+  text-align: center;
+}
+
+/* Styling for the "Other Categories" div */
+.other-categories {
+  padding: 10px;
+  background-color: #dbdbdb;
+  margin-bottom: 10px;
+  text-align: center;
+  background-color: #dbdbdb; /* Example background color */
+  border: 0px solid #c81b1b; /* Example border color */
+  border-radius: 5px;
+  width: 300px;
+  padding: 5px;
+  
+}
+/* Styling for the "Other Categories" inner divs */
+
+/* Styling for the "Other Categories" div's inner divs */
+.other-categories p {
+  margin-bottom: 10px;
+  text-align: center;
+  background-color: #dbdbdb; /* Example background color */
+  border: 1px solid #ddd; /* Example border color */
+  border-radius: 5px;
+  width: 200px;
+  padding: 0px;
+}
+
+/* Styling for the similarity bar */
+/* Styling for the similarity bar */
+.similarity-bar {
+  
+  height: 22px;
+  background: linear-gradient(90deg, #ffffff, #f7f9f7); /* Gradient background */
+  border-radius: 5px;
+  border: 0px solid #f9f9f9;
+  justify-content: center;
+  text-align: center;
+  margin-top: 5px;
+  
+}
+
+/* Styling for the filled portion of the similarity bar */
+.bar-fill {
+  height: 100%;
+  border-radius: 5px;
+  justify-content: center;
+  align-items: center;
+  background-color: #e89d53; /* Green background for similarity index */
+}
+
+.percentage-content-bar-fill{
+  justify-content: center;
+  align-items: center;
+  margin: 4px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  width: 100%;
+  height: 100%;
+}
+
+/* Styling for the category labels */
+h3 {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+/* Styling for the percentages */
+p {
+  font-size: 14px;
+  margin: 0;
+}
+
 
   
 /* CSS for the card container */

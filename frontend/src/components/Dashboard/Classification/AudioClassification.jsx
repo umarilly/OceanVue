@@ -11,7 +11,7 @@ const AudioClassification = () => {
         const formData = new FormData(event.target);
         console.log('Form Data:', formData);
 
-        const addresses = ['http://10.97.10.34:8088/', 'http://localhost:8088/'];
+        const addresses = ['http://localhost:8088/', 'http://10.97.9.69:8088/'];
         addresses.forEach(async (address) => {
             try {
                 const response = await fetch(address, {
@@ -65,27 +65,58 @@ const AudioClassification = () => {
             return null; // Don't display anything if predictions are not available yet
         }
 
+        // Sort the categories by similarity, with the highest similarity first
         const sortedKeys = Object.keys(classificationData.predictions).sort(
             (a, b) => classificationData.predictions[b] - classificationData.predictions[a]
         );
 
+        const mostSimilarCategory = sortedKeys[0]; // The category with the highest similarity
+        const otherCategories = sortedKeys.slice(1); // The remaining categories
+
         return (
             <div className="result-container">
-                <h3>Classification Result:</h3>
+
                 <div className="card">
-                    <div className="card-body">
-                        {sortedKeys.map((key) => (
-                            <>
-                                <div className="mb-2" key={key}>
-                                    <p>
-                                        {key}: {(classificationData.predictions[key] * 100).toFixed(2)}%
-                                    </p>
+
+                    <div className='classification-results-text'>
+                        <div className="classification-results-container-a">
+                            <div className="most-similar-category">
+
+                                <p>{mostSimilarCategory}</p>
+
+                                <div className="similarity-bar">
+                                    <div className="bar-fill" style={{ width: `${(classificationData.predictions[mostSimilarCategory] * 100)}%` }}>
+                                        <div className='percentage-content-bar-fill'>
+                                            {(classificationData.predictions[mostSimilarCategory] * 100).toFixed(2)}%
+                                        </div>
+                                    </div>
                                 </div>
-                            </>
-                        ))}
+                            </div>
+                            
+                            <div className="other-categories">
+                                {otherCategories.map((key) => (
+                                    <div key={key} className="other-category">
+                                        <h3>{key}</h3>
+                                        <div className="similarity-bar">
+                                            <div className="bar-fill" style={{ width: `${(classificationData.predictions[key] * 100)}%` }}>
+                                                <div className='percentage-content-bar-fill'>
+                                                    {(classificationData.predictions[key] * 100).toFixed(2)}%
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                            <div>
+                                hello world
+                            </div>
+                        </div>
                     </div>
+
+
+
                     <div>
-                    <img src={`data:image/png;base64, ${classificationData.base64_image}`} alt="Classification" />
+                        <img src={`data:image/png;base64, ${classificationData.base64_image}`} alt="Classification" />
                     </div>
                 </div>
             </div>
@@ -97,7 +128,7 @@ const AudioClassification = () => {
             <div className="grid-container">
                 <div className="audio-upload-container">
                     <h4> Choose Your Desired Audio For Classification </h4>
-                    
+
                     <form onSubmit={handleSubmit} encType="multipart/form-data">
 
                         <div className="custom-file">
@@ -127,7 +158,7 @@ const AudioClassification = () => {
 
             {resultVisible && displayClassificationResult()}
 
-            
+
 
         </div>
     );
