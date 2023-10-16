@@ -11,7 +11,7 @@ const AudioClassification = () => {
         const formData = new FormData(event.target);
         console.log('Form Data:', formData);
 
-        const addresses = ['http://localhost:8088/', 'http://10.97.9.69:8088/'];
+        const addresses = ['http://localhost:8088/'];
         addresses.forEach(async (address) => {
             try {
                 const response = await fetch(address, {
@@ -75,48 +75,42 @@ const AudioClassification = () => {
 
         return (
             <div className="result-container">
-
                 <div className="card">
-
-                    <div className='classification-results-text'>
-                        <div className="classification-results-container-a">
-                            <div className="most-similar-category">
-
-                                <p>{mostSimilarCategory}</p>
-
-                                <div className="similarity-bar">
-                                    <div className="bar-fill" style={{ width: `${(classificationData.predictions[mostSimilarCategory] * 100)}%` }}>
-                                        <div className='percentage-content-bar-fill'>
-                                            {(classificationData.predictions[mostSimilarCategory] * 100).toFixed(2)}%
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div className="other-categories">
-                                {otherCategories.map((key) => (
-                                    <div key={key} className="other-category">
-                                        <h3>{key}</h3>
-                                        <div className="similarity-bar">
-                                            <div className="bar-fill" style={{ width: `${(classificationData.predictions[key] * 100)}%` }}>
-                                                <div className='percentage-content-bar-fill'>
-                                                    {(classificationData.predictions[key] * 100).toFixed(2)}%
+                    <h2>Classification Results</h2>
+                        <div className="classification-results-container-text">
+                                <div className="other-categories">
+                                    <div className='other-category main-category-a'>
+                                        <h3>{mostSimilarCategory}</h3>
+                                        <div className='main-similarity-bar'>
+                                            <div className="similarity-bar">
+                                                <div className="bar-fill" style={{ width: `${(classificationData.predictions[mostSimilarCategory] * 100)}%` }}>
+                                                    <div className='percentage-content-bar-fill'>
+                                                        {(classificationData.predictions[mostSimilarCategory] * 100).toFixed(2)}%
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                ))}
-                            </div>
-                            <div>
-                                hello world
-                            </div>
+
+                                    {otherCategories.map((key) => (
+                                        <div key={key} className="other-category">
+                                            <h3>{key}</h3>
+                                            <div className="similarity-bar">
+                                                <div className="bar-fill" style={{ width: `${(classificationData.predictions[key] * 100)}%` }}>
+                                                    <div className='percentage-content-bar-fill'>
+                                                        {(classificationData.predictions[key] * 100).toFixed(2)}%
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            
                         </div>
-                    </div>
-
-
 
                     <div>
                         <img src={`data:image/png;base64, ${classificationData.base64_image}`} alt="Classification" />
+                        <div>hello world</div>
                     </div>
                 </div>
             </div>
