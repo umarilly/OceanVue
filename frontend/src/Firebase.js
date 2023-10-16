@@ -1,6 +1,8 @@
 
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
+import { getStorage } from 'firebase/storage';
+
 import { getFirestore, collection, query, where, getDocs } from 'firebase/firestore';
 
 const firebaseConfig = {
@@ -16,6 +18,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 const db = getFirestore(app);
+const storage = getStorage(app);
 
 // Function to check if an email already exists
 const checkIfEmailExists = async (email) => {
@@ -26,4 +29,4 @@ const checkIfEmailExists = async (email) => {
     return !querySnapshot.empty;
 };
 
-export { app, auth, db , checkIfEmailExists };
+export { app, auth, db , checkIfEmailExists , storage };

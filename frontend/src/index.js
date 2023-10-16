@@ -1,9 +1,11 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-
 import './index.css';
 import App from './App';
+
+import 'tailwindcss/tailwind.css'; 
+import 'daisyui/dist/full.css'; 
 
 import reportWebVitals from './reportWebVitals';
 
