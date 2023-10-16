@@ -12,6 +12,7 @@
 .audio-upload-container {
   background-color: #e5dfdf;
   border-radius: 10px;
+  
   padding: 20px;
   text-align: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -70,13 +71,10 @@
   background-color: #c7d1dc;
 }
 
-/* Audio Upload Container
-
-
 /* result container */
 
 .result-container{
-  border: 1px solid red;
+  border: 0px solid red;
   margin: 22px 30px 15px 0px;
 }
 
@@ -86,17 +84,20 @@
   border: 1px solid red;
 }
 
+
 /* Styling for the outer container */
-.classification-results-container-a {
+
+.classification-results-container-text{
   display: flex;
   flex-direction: row;
-  padding: 20px;
-  border: 2px solid #ccc;
+  border: 0px solid #dd1e1e;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  margin: 10px;
+  justify-content: center;
+  width: 900px;
+  align-items: center;
+  text-align: center;
 }
-
 /* Styling for the inner divs */
 
 /* Styling for the filled portion of the similarity bar in "Most Similar Category" */
@@ -109,16 +110,14 @@
 }
 
 /* Styling for the "Other Categories" div */
-/* Styling for the "Other Categories" div */
 .other-categories {
-  background-color: #e7e8e9; /* Set a lighter background color */
-  border: 0px solid #ccc; /* Add a border for distinction */
+  background-color: #e8e8e8; /* Set a lighter background color */
   border-radius: 5px;
-  width: 1000px; /* Expand the width to fill the container */
+  width: 100%; /* Expand the width to fill the container */
   padding: 20px; /* Increase padding for spacing */
   text-align: left; /* Align content to the left */
   margin-top: 0px;
-  min-height: 300px; /* Add space at the top */
+  min-height: 100px; /* Add space at the top */
 }
 
 /* Styling for the "Other Categories" inner divs */
@@ -127,38 +126,28 @@
   padding: 5px; /* Increase padding for inner divs */
   border: 1px solid #ddd; /* Add a border for inner divs */
   border-radius: 5px;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
   background-color: #ffffff; /* Set a white background for inner divs */
+}
+
+.other-category h3{
+  margin-top: 5px;
 }
 
 /* Styling for the similarity bar in "Other Categories" */
 .other-categories .similarity-bar {
-  height: 30px; /* Reduce the height of the similarity bar */
+  height: 25px; /* Reduce the height of the similarity bar */
   background: linear-gradient(90deg, #ffffff, #f7f9f7);
   border-radius: 5px;
   border: 1px solid #ccc;
-  margin-top: 20px;
-  
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 /* Styling for the percentage content in "Other Categories" */
 .other-categories .percentage-content-bar-fill {
   font-size: 14px; /* Set font size for percentages */
-}
-
-
-/* Styling for the similarity bar */
-.similarity-bar {
-  
-  height: 24px;
-  background: linear-gradient(90deg, #f3f3f5, #edf4f5); /* Gradient background */
-  border-radius: 0px;
-  border: 2px linear-gradient(90deg, #bfbcfa, #bfdade);
-  justify-content: center;
-  text-align: center;
-  
-
 }
 
 /* Styling for the filled portion of the similarity bar */
@@ -175,11 +164,10 @@
 .percentage-content-bar-fill{
   justify-content: center;
   align-items: center;
-  margin-left: 10px;
-  padding-top: 4px;
+  padding-left: 5px;
+  padding-top: 1.5px;
   justify-content: center;
   align-items: center;
-  
   text-align: center;
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size:medium;
@@ -199,16 +187,22 @@ p {
   margin: 0;
 }
 
-
-  
 /* CSS for the card container */
 .card {
-    text-align: center;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(221, 221, 221, 0.1);
-    margin-bottom: 10px; /* Adjust as needed */
-    padding: 10px;
-  }
+  display: flex; /* Add this to make the card a flex container */
+  flex-direction: column; /* Align items vertically */
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(221, 221, 221, 0.1);
+  margin-bottom: 10px;
+  padding: 10px;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  text-align: center;
+}
+
+.card h2{
+  padding-bottom: 10px;
+}
   
   /* CSS for the card body */
   .card-body {

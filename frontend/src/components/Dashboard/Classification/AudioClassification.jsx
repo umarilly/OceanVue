@@ -11,7 +11,7 @@ const AudioClassification = () => {
         const formData = new FormData(event.target);
         console.log('Form Data:', formData);
 
-        const addresses = ['http://localhost:8088/', 'http://10.97.9.69:8088/'];
+        const addresses = ['http://localhost:8088/'];
         addresses.forEach(async (address) => {
             try {
                 const response = await fetch(address, {
@@ -75,17 +75,10 @@ const AudioClassification = () => {
 
         return (
             <div className="result-container">
-
                 <div className="card">
                     <h2>Classification Results</h2>
-                    <div className='classification-results-text'>
-
-                        <div className="classification-results-container-a">
-
-                            
-                                
+                        <div className="classification-results-container-text">
                                 <div className="other-categories">
-
                                     <div className='other-category main-category-a'>
                                         <h3>{mostSimilarCategory}</h3>
                                         <div className='main-similarity-bar'>
@@ -97,7 +90,6 @@ const AudioClassification = () => {
                                                 </div>
                                             </div>
                                         </div>
-
                                     </div>
 
                                     {otherCategories.map((key) => (
@@ -116,12 +108,9 @@ const AudioClassification = () => {
                             
                         </div>
 
-
-
-                    </div>
-
                     <div>
                         <img src={`data:image/png;base64, ${classificationData.base64_image}`} alt="Classification" />
+                        <div>hello world</div>
                     </div>
                 </div>
             </div>
