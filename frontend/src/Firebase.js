@@ -1,8 +1,7 @@
 
 import { initializeApp } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
 import { getStorage } from 'firebase/storage';
-
+import { getAuth, EmailAuthProvider } from 'firebase/auth';
 import { getFirestore, collection, query, where, getDocs } from 'firebase/firestore';
 
 const firebaseConfig = {
@@ -29,4 +28,4 @@ const checkIfEmailExists = async (email) => {
     return !querySnapshot.empty;
 };
 
-export { app, auth, db , checkIfEmailExists , storage };
+export { app, auth, db , checkIfEmailExists , storage , EmailAuthProvider };

@@ -1,3 +1,5 @@
+
+
 import React, { useState, useEffect } from 'react';
 import './UserProfileComp.css';
 
@@ -5,9 +7,7 @@ import { TextField } from '@mui/material';
 
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { auth, db } from '../../../Firebase';
-
-import { EmailAuthProvider } from 'firebase/auth';
-
+import { EmailAuthProvider, reauthenticateWithCredential, updatePassword } from 'firebase/auth';
 
 const UserProfileComp = () => {
     const [userFormData, setUserFormData] = useState({
@@ -60,23 +60,19 @@ const UserProfileComp = () => {
         e.preventDefault();
 
         try {
-            // Assuming you have the user's UID stored in your authentication state
             const userId = auth.currentUser.uid;
 
-            // Reference to the user document in Firestore
             const userDocRef = doc(db, 'Users', userId);
 
-            setIsUpdating(true); // Set isUpdating to true while updating
+            setIsUpdating(true);
 
-            // Update the user's data in Firestore
             await updateDoc(userDocRef, {
                 username: userFormData.username,
             });
 
-            // Wait for 1 second (1000 milliseconds) before reloading the page
             setTimeout(() => {
-                setIsUpdating(false); // Set isUpdating back to false
-                window.location.reload(); // Reload the page
+                setIsUpdating(false);
+                window.location.reload();
             }, 1000);
 
         } catch (error) {
@@ -96,49 +92,40 @@ const UserProfileComp = () => {
             setError("New password should be different from the old password");
             return;
         }
-
-        console.log(newPassword);
     
         try {
             const user = auth.currentUser;
-            const email = user.email;
-            
-            // Reauthenticate the user
-            const credentials = EmailAuthProvider.credential(email, oldPassword);
-            await user.reauthenticateWithCredential(credentials);
+            const credential = EmailAuthProvider.credential(user.email, oldPassword);
+            await reauthenticateWithCredential(user, credential);
     
-            // Update the password in the Firebase authentication
-            await user.updatePassword(newPassword);
-
-            console.log(newPassword);
+            // Update the password in the authentication
+            await updatePassword(user, newPassword);
     
-            // Update the user document in Firestore (assuming 'Users' is your collection name)
-            const userId = user.uid;
+            // Update the password in the Firestore document
+            const userId = auth.currentUser.uid;
             const userDocRef = doc(db, 'Users', userId);
-            const docSnap = await getDoc(userDocRef);
-            const userData = docSnap.data();
-            console.log(userData);
-    
-            // Update only the necessary fields in the Firestore document
             await updateDoc(userDocRef, {
-                ...userData,
-                // Assuming you have a 'password' field in your Firestore collection
-                password: newPassword,
-                
+                password: newPassword, // Change 'password' to your password field name in the Firestore document
             });
-
-            console.log(newPassword);
     
-            setError("");
-            setOldPassword("");
-            setNewPassword("");
-            setConfirmPassword("");
-        } 
-            catch (error) {
-            setError("Please try again");
+            // Clear the input fields and error message
+            setOldPassword('');
+            setNewPassword('');
+            setConfirmPassword('');
+            setError('');
+    
+            // Display success message or perform any other actions on success
+            console.log('Password updated successfully');
+        } catch (error) {
+            // Handle any errors related to password update
+            console.error('Error updating password: ', error.message);
+            setError('Error updating password. Please try again.');
         }
     };
     
+    
+    
+
     return (
         <>
             <div className='userProfileCompMain'>
@@ -212,9 +199,14 @@ const UserProfileComp = () => {
                     </div>
                 </form>
             </div>
+
+            <div className='userProfileCompMain'>
+
+                {/* Implement here */}
+            </div>
+
         </>
     );
 };
 
 export default UserProfileComp;
-
