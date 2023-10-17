@@ -6,6 +6,8 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { auth, db } from '../../../Firebase';
 import { doc, getDoc } from 'firebase/firestore'; // Import Firestore functions
 
+
+
 const Navbar = () => {
     const [user, setUser] = useState(null);
     const [username, setUsername] = useState('');

@@ -74,29 +74,32 @@
 /* result container */
 
 .result-container{
-  border: 0px solid red;
+  border: 1px solid red;
   margin: 22px 30px 15px 0px;
+  padding: 10px;
 }
 
 
 .result-display-container
 {
-  border: 1px solid red;
+  border: 2px solid rgb(91, 25, 192);
+
 }
 
 
-/* Styling for the outer container */
+/* Styling for Similarity Indexes Div */
 
 .classification-results-container-text{
   display: flex;
   flex-direction: row;
-  border: 0px solid #dd1e1e;
+  border: 1px solid #39dd62;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   justify-content: center;
   width: 900px;
   align-items: center;
   text-align: center;
+  margin-bottom: 20px;
 }
 /* Styling for the inner divs */
 
@@ -140,7 +143,7 @@
   height: 25px; /* Reduce the height of the similarity bar */
   background: linear-gradient(90deg, #ffffff, #f7f9f7);
   border-radius: 5px;
-  border: 1px solid #ccc;
+  border: 3px solid #cfcfcf;
   margin-top: 10px;
   margin-bottom: 10px;
 }
@@ -174,6 +177,96 @@
   width: 100%;
   height: 100%;
 }
+
+
+/* --------------------------------------- */
+
+
+/* PREDICTED CATEGORY VISUALISATION */
+
+/* --------------------------------------- */
+
+.audio-visualisation{
+  display: flex;
+  flex-direction: row;
+  border: 0px solid #dd1e1e;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  
+  width: 100%;
+  align-items: center;
+  text-align: center;
+  justify-content: space-between;
+  min-height:400px;
+  padding: 40px;
+}
+
+.abc{
+  display: flex;
+  flex-direction: column;
+}
+
+.predicted-category {
+  border: 1px solid #000;
+  height: 320px;
+  min-width: 300px;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: #f0f0f0; /* Light gray background color */
+}
+
+.predicted-inner-div {
+  padding: 20px; /* Add padding for spacing */
+  background-color: #fff; /* White background color */
+  border-radius: 10px; /* Slightly rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle box shadow */
+}
+
+.predicted-inner-div h3 {
+  font-size: 24px; /* Increase the font size for the heading */
+  color: #333; /* Dark text color */
+}
+
+.predicted-inner-div div {
+  font-size: 36px; /* Increase the font size for the percentage */
+  color: #007bff; /* Blue text color */
+  margin-top: 10px; /* Add space between the heading and percentage */
+}
+
+
+
+
+
+.audio-waveform
+{
+  border: 1px solid black;
+  height: 320px;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+
+/* Spectogram Div */
+.audio-spectogram{
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 10px;
+  height: 320px;
+  border-radius: 15px;
+}
+
+
+
+/* --------------------------------------- */
 
 /* Styling for the category labels */
 h3 {

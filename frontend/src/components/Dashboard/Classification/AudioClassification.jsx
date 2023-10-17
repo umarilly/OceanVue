@@ -74,43 +74,33 @@ const AudioClassification = () => {
         const otherCategories = sortedKeys.slice(1); // The remaining categories
 
         return (
-            <div className="result-container">
-                <div className="card">
+            <div >
+                <div>
                     <h2>Classification Results</h2>
-                        <div className="classification-results-container-text">
-                                <div className="other-categories">
-                                    <div className='other-category main-category-a'>
-                                        <h3>{mostSimilarCategory}</h3>
-                                        <div className='main-similarity-bar'>
-                                            <div className="similarity-bar">
-                                                <div className="bar-fill" style={{ width: `${(classificationData.predictions[mostSimilarCategory] * 100)}%` }}>
-                                                    <div className='percentage-content-bar-fill'>
-                                                        {(classificationData.predictions[mostSimilarCategory] * 100).toFixed(2)}%
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                    <div>
+                        <div>
+                            <div >
+                                <h3>{mostSimilarCategory}</h3>
+                                <p>{(classificationData.predictions[mostSimilarCategory] * 100).toFixed(2)}%</p>
+                            </div>
 
-                                    {otherCategories.map((key) => (
-                                        <div key={key} className="other-category">
-                                            <h3>{key}</h3>
-                                            <div className="similarity-bar">
-                                                <div className="bar-fill" style={{ width: `${(classificationData.predictions[key] * 100)}%` }}>
-                                                    <div className='percentage-content-bar-fill'>
-                                                        {(classificationData.predictions[key] * 100).toFixed(2)}%
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    ))}
+                            {otherCategories.map((key) => (
+                                <div key={key}>
+                                    <h3>{key}</h3>
+                                    <p>{(classificationData.predictions[key] * 100).toFixed(2)}%</p>
                                 </div>
-                            
+                            ))}
                         </div>
+                    </div>
 
                     <div>
+                        <h3>Mel Spectogram</h3>
                         <img src={`data:image/png;base64, ${classificationData.base64_image}`} alt="Classification" />
-                        <div>hello world</div>
+                        <h3>Waveform</h3>
+                        <img src={`data:image/png;base64, ${classificationData.base64_waveform}`} alt="Classification" />
+                        <h3>Spectogram</h3>
+                        <img src={`data:image/png;base64, ${classificationData.base64_spectogram}`} alt="Classification" />
+                        
                     </div>
                 </div>
             </div>
@@ -151,8 +141,6 @@ const AudioClassification = () => {
             </div>
 
             {resultVisible && displayClassificationResult()}
-
-
 
         </div>
     );

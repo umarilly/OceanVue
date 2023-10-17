@@ -2,6 +2,8 @@
 import os
 from pathlib import Path
 import torch
+import librosa
+import librosa.display
 import tempfile
 from flask import Flask, request, jsonify, render_template
 from fastai.vision.all import *
@@ -14,6 +16,7 @@ from PIL import Image
 import base64
 matplotlib.use('Agg')
 import base64
+from io import BytesIO
 import io
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from matplotlib.figure import Figure
@@ -89,21 +92,6 @@ def wavToSpecs(wavs : torch.Tensor, hf_idx=0):
     spec2 = torch.stack((lf0,lf1,hf),0)
     return torch.stack((lf0,lf1,hf),0)
 
-def tensor_to_base64_image(tensor, figsize=(3,3)):
-    
-    plt.figure(figsize=figsize)
-    plt.imshow(tensor[0].cpu())
-
-    # Encode the image as base64
-    buffer = io.BytesIO()
-    plt.savefig(buffer, format='png')  # Save the image to the buffer in PNG format
-    buffer.seek(0)
-    base64_image = base64.b64encode(buffer.read()).decode('utf-8')
-
-    plt.close()
-
-    return base64_image
-
 class Spectrogram(TensorImageBase):
     """Type to represent a spectogram which knows show itself"""
     @classmethod
@@ -174,6 +162,67 @@ def predTensor(p, overlap=0.5):
         spec = torch.cat((spec,wavToSpecs(wav[:,idx:idx+rng_lf],hf_idx)[None,:,:,:]),0)
     return Spectrogram.create(spec)
 
+# Generating Mel Spectogram
+
+def tensor_to_base64_image(tensor, figsize=(3,3)):
+    
+    plt.figure(figsize=figsize)
+    plt.imshow(tensor[0].cpu())
+
+    # Encode the image as base64
+    buffer = io.BytesIO()
+    plt.savefig(buffer, format='png')  # Save the image to the buffer in PNG format
+    buffer.seek(0)
+    base64_image = base64.b64encode(buffer.read()).decode('utf-8')
+
+    plt.close()
+
+    return base64_image
+
+# Generating Waveform
+
+def generate_waveform_plot(audio_file_path):
+    # Load the audio file
+    y, sr = librosa.load(audio_file_path)
+
+    # Plot the waveform
+    plt.figure(figsize=(4, 2))
+    librosa.display.waveshow(y, sr=sr)
+    plt.title('Waveform')
+    plt.xlabel('Time (s)')
+    plt.ylabel('Amplitude')
+    plt.tight_layout()
+
+    # Encode the waveform plot as a base64 image
+    buf = BytesIO()
+    plt.savefig(buf, format='png')
+    buf.seek(0)
+    base64_waveform = base64.b64encode(buf.read()).decode('utf-8')
+    buf.close()
+
+    return base64_waveform
+
+def generate_spectrogram_plot(audio_file_path):
+    # Load the audio file
+    y, sr = librosa.load(audio_file_path)
+
+    # Generate a spectrogram
+    D = librosa.amplitude_to_db(np.abs(librosa.stft(y)), ref=np.max)
+
+    plt.figure(figsize=(4, 2))
+    librosa.display.specshow(D, sr=sr, x_axis='time', y_axis='log')
+    plt.colorbar(format='%+2.0f dB')
+    plt.title('Spectrogram')
+
+    # Encode the spectrogram plot as a base64 image
+    buf = BytesIO()
+    plt.savefig(buf, format='png')
+    buf.seek(0)
+    base64_spectrogram = base64.b64encode(buf.read()).decode('utf-8')
+    buf.close()
+
+    return base64_spectrogram
+
 learn = load_learner(weights_path / weights)
 
 def prettyPred(pbatch):
@@ -181,7 +230,7 @@ def prettyPred(pbatch):
     return {k: v for k,v in zip(learn.dls.vocab, p)}  
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": [ "http://localhost:3000"]}})  # Enable CORS for your React app's origin
+CORS(app, resources={r"/*": {"origins": [ "http://localhost:3000", 'http://10.97.11.169:3000/']}})  # Enable CORS for your React app's origin
 
 @app.route('/', methods=['POST'])
 def classify():
@@ -205,6 +254,8 @@ def classify():
             
             read_file = readWav(fname)
             spec_file = wavToSpecs(read_file)
+            waveform_base64 = generate_waveform_plot(fname)
+            spectrogram_base64 = generate_spectrogram_plot(fname)
 
             base64_conv_img = tensor_to_base64_image(spec_file)
             #print(spec_file)
@@ -212,7 +263,9 @@ def classify():
             # Send the base64-encoded image and predictions to the frontend
             response_data = {
                 'predictions': p,
-                'base64_image': base64_conv_img  # Add this line to include the base64 image
+                'base64_image': base64_conv_img,  # Add this line to include the base64 image
+                'base64_waveform': waveform_base64,
+                'base64_spectogram': spectrogram_base64
             }
 
             return jsonify(response_data)
