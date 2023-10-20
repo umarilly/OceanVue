@@ -230,7 +230,7 @@ def prettyPred(pbatch):
     return {k: v for k,v in zip(learn.dls.vocab, p)}  
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": [ "http://localhost:3000", 'http://10.97.11.169:3000/']}})  # Enable CORS for your React app's origin
+CORS(app, resources={r"/*": {"origins": [ "http://localhost:3000"]}})  # Enable CORS for your React app's origin
 
 @app.route('/', methods=['POST'])
 def classify():

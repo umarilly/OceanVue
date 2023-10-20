@@ -1,21 +1,26 @@
 /* main div container */
 
-.container-main{
+.AudioClassificationCompMain {
+  flex: 1;
+  min-height: 35vh;
+  border: 1px solid rgb(188, 188, 188);
+  border-radius: 20px;
+  background-color: white;
   margin: 22px 30px 15px 20px;
+  padding: 20px;
+  border: 3px solid rgb(17, 255, 0);
 }
 
 
-/* CSS for the main container */
+
 
 
 /* Audio Upload Section */
+
 .audio-upload-container {
-  background-color: #e5dfdf;
   border-radius: 10px;
-  
   padding: 20px;
   text-align: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   max-width: 800px;
   min-width: 800px;
   margin: 0 auto;
@@ -71,259 +76,57 @@
   background-color: #c7d1dc;
 }
 
-/* result container */
+/* Classification Results  */
 
-.result-container{
-  border: 1px solid red;
-  margin: 22px 30px 15px 0px;
-  padding: 10px;
-}
-
-
-.result-display-container
-{
-  border: 2px solid rgb(91, 25, 192);
-
-}
-
-
-/* Styling for Similarity Indexes Div */
-
-.classification-results-container-text{
+.AudioClassificationResult {
+  flex: 1;
   display: flex;
-  flex-direction: row;
-  border: 1px solid #39dd62;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  justify-content: center;
-  width: 900px;
-  align-items: center;
-  text-align: center;
-  margin-bottom: 20px;
-}
-/* Styling for the inner divs */
-
-/* Styling for the filled portion of the similarity bar in "Most Similar Category" */
-.main-category-a .bar-fill {
-  border-radius: 0px;
-  color: white;
-  border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px;
-  background-color: #32c267; /* Green background for similarity index */
-}
-
-/* Styling for the "Other Categories" div */
-.other-categories {
-  background-color: #e8e8e8; /* Set a lighter background color */
-  border-radius: 5px;
-  width: 100%; /* Expand the width to fill the container */
-  padding: 20px; /* Increase padding for spacing */
-  text-align: left; /* Align content to the left */
-  margin-top: 0px;
-  min-height: 100px; /* Add space at the top */
-}
-
-/* Styling for the "Other Categories" inner divs */
- .other-category {
-  margin-bottom: 10px; /* Increase space between inner divs */
-  padding: 5px; /* Increase padding for inner divs */
-  border: 1px solid #ddd; /* Add a border for inner divs */
-  border-radius: 5px;
-  padding-left: 10px;
-  padding-right: 10px;
-  background-color: #ffffff; /* Set a white background for inner divs */
-}
-
-.other-category h3{
-  margin-top: 5px;
-}
-
-/* Styling for the similarity bar in "Other Categories" */
-.other-categories .similarity-bar {
-  height: 25px; /* Reduce the height of the similarity bar */
-  background: linear-gradient(90deg, #ffffff, #f7f9f7);
-  border-radius: 5px;
-  border: 3px solid #cfcfcf;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-/* Styling for the percentage content in "Other Categories" */
-.other-categories .percentage-content-bar-fill {
-  font-size: 14px; /* Set font size for percentages */
-}
-
-/* Styling for the filled portion of the similarity bar */
-.bar-fill {
-  height: 100%;
-  border-radius: 0px;
-  justify-content: center;
-  align-items: center;
-  background-color: #d6e8fb;
-  border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px; /* Green background for similarity index */
-}
-
-.percentage-content-bar-fill{
-  justify-content: center;
-  align-items: center;
-  padding-left: 5px;
-  padding-top: 1.5px;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  font-size:medium;
-  width: 100%;
-  height: 100%;
-}
-
-
-/* --------------------------------------- */
-
-
-/* PREDICTED CATEGORY VISUALISATION */
-
-/* --------------------------------------- */
-
-.audio-visualisation{
-  display: flex;
-  flex-direction: row;
-  border: 0px solid #dd1e1e;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  
-  width: 100%;
-  align-items: center;
-  text-align: center;
   justify-content: space-between;
-  min-height:400px;
-  padding: 40px;
+  min-height: 35vh;
+  border: 1px solid rgb(188, 188, 188);
+  border-radius: 20px;
+  background-color: white;
+  margin: 22px 30px 15px 20px;
+  padding: 20px;
+  border: 3px solid red;
+  min-width: 90vh;
 }
 
-.abc{
+.audioClassificationResultHead {
+  border: 3px solid rgb(43, 0, 255);
+  width: 100%;
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
 }
 
-.predicted-category {
-  border: 1px solid #000;
-  height: 320px;
-  min-width: 300px;
-  border-radius: 15px;
+.audioClassificationResultHeadFirst {
+  border: 3px solid rgb(39, 174, 223);
+  width: 80%;
+  margin: 20px;
+
+}
+
+.classificationResultHeading-1 {
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
-  background-color: #f0f0f0; /* Light gray background color */
+  font-weight: bold ;
+  font-size: 25px;
+  margin: 20px;
 }
 
-.predicted-inner-div {
-  padding: 20px; /* Add padding for spacing */
-  background-color: #fff; /* White background color */
-  border-radius: 10px; /* Slightly rounded corners */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle box shadow */
-}
-
-.predicted-inner-div h3 {
-  font-size: 24px; /* Increase the font size for the heading */
-  color: #333; /* Dark text color */
-}
-
-.predicted-inner-div div {
-  font-size: 36px; /* Increase the font size for the percentage */
-  color: #007bff; /* Blue text color */
-  margin-top: 10px; /* Add space between the heading and percentage */
-}
-
-
-
-
-
-.audio-waveform
-{
-  border: 1px solid black;
-  height: 320px;
-  border-radius: 15px;
+.classificationResultHeading {
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
+  font-weight: bold ;
+  font-size: 20px;
+  margin: 20px;
 }
 
-
-/* Spectogram Div */
-.audio-spectogram{
-  border: 1px solid black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 10px;
-  height: 320px;
-  border-radius: 15px;
+.classificationResultText {
+  margin-bottom: 20px;
+  border: 3px solid pink;
 }
-
-
-
-/* --------------------------------------- */
-
-/* Styling for the category labels */
-h3 {
-  font-size: 16px;
-  margin-bottom: 5px;
-}
-
-/* Styling for the percentages */
-p {
-  font-size: 14px;
-  margin: 0;
-}
-
-/* CSS for the card container */
-.card {
-  display: flex; /* Add this to make the card a flex container */
-  flex-direction: column; /* Align items vertically */
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(221, 221, 221, 0.1);
-  margin-bottom: 10px;
-  padding: 10px;
-  justify-content: center; /* Center horizontally */
-  align-items: center; /* Center vertically */
-  text-align: center;
-}
-
-.card h2{
-  padding-bottom: 10px;
-}
-  
-  /* CSS for the card body */
-  .card-body {
-    padding: 10px; /* Adjust as needed */
-  }
-  
-  /* CSS for the individual items within the card body */
-  .card-body .mb-2 {
-    margin-bottom: 10px; /* Adjust as needed */
-  }
-  
-  /* CSS for the text content within the items */
-  .card-body p {
-    margin: 0;
-    font-size: 16px; /* Adjust as needed */
-    color: #333; /* Adjust text color as needed */
-  }
-  
-  /* CSS for the percentage */
-  .card-body p span {
-    font-weight: bold;
-    margin-left: 5px; /* Adjust as needed */
-  }
-
-  .result-display-container{
-    background-color: #f5f5f5;
-    background-color: rgb(255, 255, 255); 
-    min-width: 400px;
-    margin-left: 20px;
-       /* Add your styling for this container as needed */
-  }

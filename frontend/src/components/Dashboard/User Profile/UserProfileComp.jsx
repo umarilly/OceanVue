@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import './UserProfileComp.css';
+import UserProfileCompTwo from "./UserProfileCompTwo";
 
 import { TextField } from '@mui/material';
 
@@ -202,7 +203,7 @@ const UserProfileComp = () => {
 
             <div className='userProfileCompMain'>
 
-                {/* Implement here */}
+                <UserProfileCompTwo />
             </div>
 
         </>
