@@ -8,12 +8,7 @@
   background-color: white;
   margin: 22px 30px 15px 20px;
   padding: 20px;
-  border: 3px solid rgb(17, 255, 0);
 }
-
-
-
-
 
 /* Audio Upload Section */
 
@@ -88,12 +83,10 @@
   background-color: white;
   margin: 22px 30px 15px 20px;
   padding: 20px;
-  border: 3px solid red;
   min-width: 90vh;
 }
 
 .audioClassificationResultHead {
-  border: 3px solid rgb(43, 0, 255);
   width: 100%;
   display: flex;
   justify-content: center;
@@ -102,13 +95,12 @@
 }
 
 .audioClassificationResultHeadFirst {
-  border: 3px solid rgb(39, 174, 223);
-  width: 80%;
+  width: 90%;
   margin: 20px;
 
 }
 
-.classificationResultHeading-1 {
+.classificationResultHeading {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -117,16 +109,109 @@
   margin: 20px;
 }
 
-.classificationResultHeading {
+.classificationResultResult {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+
+}
+
+.classificationResultText {
+  margin: 20px;
+  border: 1px solid rgb(188, 188, 188);
+  border-radius: 20px;
+  padding: 20px;
+  width: 100%;
+  min-height: 250px;
+}
+
+/* Plotly Charts */
+
+.audioClassificationCharts {
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.audioClassificationChartsSection {
+  border: 1px solid rgb(188, 188, 188);
+  border-radius: 20px;
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 20px;
+}
+
+.classificationResultHeadingCharts {
   display: flex;
   justify-content: center;
   align-items: center;
   font-weight: bold ;
-  font-size: 20px;
+  font-size: 25px;
   margin: 20px;
 }
 
-.classificationResultText {
-  margin-bottom: 20px;
-  border: 3px solid pink;
+
+.audioClassificationMainPythonCharts {
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column ;
 }
+
+.audioClassificationMainPythonCharts-div1 {
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgb(188, 188, 188);
+  border-radius: 20px;
+  flex-direction: column ;
+  margin: 20px;
+}
+
+.classificationResultHeadingPythonCharts {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold ;
+  font-size: 25px;
+  margin-top: 20px;
+}
+
+.audioClassificationMainPythonChartsMelspec {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 20px;
+  min-height: 300px;
+  width: 100%;
+}
+
+.audioClassificationMainPythonChartsMelspec1 {
+  width: 55%;
+  min-height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.audioClassificationMainPythonChartsMelspec2 {
+  width: 35%;
+  height: 100px;
+  padding: 15px;
+  border: 1px solid rgb(188, 188, 188);
+  border-radius: 20px;
+}
+
+
+
+
+

@@ -1,0 +1,311 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: 'Raleway', sans-serif;
+}
+
+
+.mainAbout {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px 0px 10px 0px;
+    width: 100%;
+    height: auto;
+    margin: 0px 0px 20px 0px;
+}
+
+
+.mainAbout1 {
+    width: 90%;
+    height: 400px;
+    margin: 0px 0px 20px 0px;
+    display: flex;
+    justify-content: space-around ;
+    align-items: center;
+}
+
+.mainAbout1Box1 {
+    width: 35%;
+    height: 380px;
+    margin: 120px 10px 20px 100px;
+    display: flex;
+    justify-content: center ;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.mainAbout1Box1Heading {
+    font-size: larger;
+    font-weight: bold;
+    margin: 0px 10px 0px 10px;
+}
+
+.mainAbout1Box1Content {
+    margin: 10px 10px 10px 10px;
+    text-align: justify;
+}
+
+.mainAbout1Box2 {
+    width: 50%;
+    height: 380px;
+    margin: 20px 10px 20px 10px;
+    display: flex;
+    justify-content: center ;
+    align-items: center;
+}
+
+.mainAbout1Box2 img {
+    width: 500px;
+    height: 400px;
+    flex-shrink: 0;
+}
+
+.mainAbout2 {
+    width: 90%;
+    height: 400px;
+    margin: 20px 0px 20px 0px;
+    display: flex;
+    justify-content: space-around ;
+    align-items: center;
+}
+
+.mainAbout2Box1 {
+    width: 35%;
+    height: 380px;
+    margin: 20px 10px 20px -100px;
+    display: flex;
+    justify-content: center ;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.mainAbout2Box1Heading {
+    font-size: larger;
+    font-weight: bold;
+    margin: 0px 10px 0px 10px;
+}
+
+.mainAbout2Box1Content {
+    margin: 10px 10px 10px 10px;
+    text-align: justify;
+}
+
+.mainAbout2Box2 {
+    width: 50%;
+    height: 380px;
+    margin: -30px 10px 20px -80px;
+    display: flex;
+    justify-content: center ;
+    align-items: center;
+}
+
+.mainAbout2Box2 img {
+    width: 500px;
+    height: 400px;
+    flex-shrink: 0;
+}
+
+.mainAbout3 {
+    width: 90%;
+    height: 400px;
+    margin: 20px 0px 20px 0px;
+    display: flex;
+    justify-content: space-around ;
+    align-items: center;
+}
+
+.mainAbout3Box1 {
+    width: 35%;
+    height: 380px;
+    margin: 20px 10px 20px 100px;
+    display: flex;
+    justify-content: center ;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.mainAbout3Box1Heading {
+    font-size: larger;
+    font-weight: bold;
+    margin: 0px 10px 0px 10px;
+}
+
+.mainAbout3Box1Content {
+    margin: 10px 10px 10px 10px;
+    text-align: justify;
+}
+
+.mainAbout3Box2 {
+    width: 50%;
+    height: 380px;
+    margin: -30px 10px 20px 10px;
+    display: flex;
+    justify-content: center ;
+    align-items: center;
+}
+
+.mainAbout3Box2 img {
+    width: 500px;
+    height: 400px;
+    flex-shrink: 0;
+}
+
+/* 
+    Media Queries - Main Navbar
+    For Mobile View
+*/
+
+@media screen and (max-width: 700px) {
+    .mainAbout {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        flex-direction: column;
+        padding: 10px 0px 10px 0px;
+        width: 100%;
+        height: auto;
+        margin: 0px 0px 20px 0px;
+    }
+    
+    
+    .mainAbout1 {
+        width: 90%;
+        height: auto;
+        margin: 0px 0px 20px 0px;
+        display: flex;
+        justify-content: center ;
+        align-items: center;
+        flex-direction: column;
+    }
+    
+    .mainAbout1Box1 {
+        width: 90%;
+        height: auto;
+        margin: 20px 10px 20px 10px;
+        display: flex;
+        justify-content: center ;
+        align-items: flex-start;
+        flex-direction: column;
+    }
+    
+    .mainAbout1Box1Heading {
+        font-size: larger;
+        font-weight: bold;
+        margin: 0px 10px 0px 10px;
+    }
+    
+    .mainAbout1Box1Content {
+        margin: 10px 10px 10px 10px;
+        text-align: justify;
+    }
+    
+    .mainAbout1Box2 {
+        width: 90%;
+        height: auto;
+        margin: 20px 10px 20px 10px;
+        display: flex;
+        justify-content: center ;
+        align-items: center;
+    }
+    
+    .mainAbout1Box2 img {
+        width: 400px;
+        height: 300px;
+        flex-shrink: 0;
+    }
+    
+    .mainAbout2 {
+        width: 90%;
+        height: auto;
+        margin: 20px 0px 20px 0px;
+        display: flex;
+        justify-content: center ;
+        align-items: center;
+        flex-direction: column-reverse;
+    }
+    
+    .mainAbout2Box1 {
+        width: 90%;
+        height: auto;
+        margin: 20px 10px 20px 10px;
+        display: flex;
+        justify-content: center ;
+        align-items: flex-start;
+        flex-direction: column;
+    }
+    
+    .mainAbout2Box1Heading {
+        font-size: larger;
+        font-weight: bold;
+        margin: 0px 10px 0px 10px;
+    }
+    
+    .mainAbout2Box1Content {
+        margin: 10px 10px 10px 10px;
+        text-align: justify;
+    }
+    
+    .mainAbout2Box2 {
+        width: 90%;
+        height: auto;
+        margin: -20px 10px 20px 10px;
+        display: flex;
+        justify-content: center ;
+        align-items: center;
+    }
+    
+    .mainAbout2Box2 img {
+        width: 400px;
+        height: 300px;
+        flex-shrink: 0;
+    }
+    
+    .mainAbout3 {
+        width: 90%;
+        height: auto;
+        margin: 20px 0px 20px 0px;
+        display: flex;
+        justify-content: center ;
+        align-items: center;
+        flex-direction: column;
+    }
+    
+    .mainAbout3Box1 {
+        width: 90%;
+        height: auto;
+        margin: 20px 10px 20px 10px;
+        display: flex;
+        justify-content: center ;
+        align-items: flex-start;
+        flex-direction: column;
+    }
+    
+    .mainAbout3Box1Heading {
+        font-size: larger;
+        font-weight: bold;
+        margin: 0px 10px 0px 10px;
+    }
+    
+    .mainAbout3Box1Content {
+        margin: 10px 10px 10px 10px;
+        text-align: justify;
+    }
+    
+    .mainAbout3Box2 {
+        width: 90%;
+        height: auto;
+        margin: 20px 10px 20px 10px;
+        display: flex;
+        justify-content: center ;
+        align-items: center;
+    }
+    
+    .mainAbout3Box2 img {
+        width: 400px;
+        height: 300px;
+        flex-shrink: 0;
+    }
+}

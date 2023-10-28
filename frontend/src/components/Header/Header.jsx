@@ -54,11 +54,6 @@ const Header = () => {
                         Remember to test your changes across different devices and browsers to ensure that the "Raleway" font is displaying as expected and maintaining readability. Remember to test your changes across different devices and browsers to ensure that the "Raleway" font is displaying as expected and maintaining readability.
                     </p>
                 </div>
-                <div className="main-header-box1-div3">
-                    <p>
-                        Remember to test your changes across different devices and browsers to ensure that the "Raleway" font is displaying as expected and maintaining readability. Remember to test your changes across different devices and browsers to ensure that the "Raleway" font is displaying as expected and maintaining readability.
-                    </p>
-                </div>
 
                 <div className="main-header-box1-div4">
                     {user ? (

@@ -20,10 +20,10 @@
 
 .main-header-box1 {
     width: 40%;
-    height: 350px;
+    height: auto;
     display: block;
     color: white;
-    margin: -60px 0px 0px 0px;
+    margin: -80px 0px 0px 0px;
     animation: slideRight 1s ease-in-out;
 }
 
@@ -31,14 +31,17 @@
     width: 50%;
     height: auto;
     margin: 10px 10px 20px 50px;
+    font-size : x-large;
+    font-weight: bold;
 }
 
 .main-header-box1-div2 {
     width: 90%;
     height: auto;
     font-size: 16px;
-    margin: 10px 10px 10px 50px;
+    margin: 10px 10px 20px 50px;
     font-variant: all-small-caps;
+    text-align: justify;
 }
 
 .main-header-box1-div3 {
@@ -47,6 +50,7 @@
     font-size: 16px;
     margin: 10px 10px 20px 50px;
     font-variant: all-small-caps;
+    text-align: justify;
 }
 
 .main-header-box1-div4 {

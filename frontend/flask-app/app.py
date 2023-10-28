@@ -164,7 +164,7 @@ def predTensor(p, overlap=0.5):
 
 # Generating Mel Spectogram
 
-def tensor_to_base64_image(tensor, figsize=(3,3)):
+def tensor_to_base64_image(tensor, figsize=(4,4)):
     
     plt.figure(figsize=figsize)
     plt.imshow(tensor[0].cpu())
@@ -186,7 +186,7 @@ def generate_waveform_plot(audio_file_path):
     y, sr = librosa.load(audio_file_path)
 
     # Plot the waveform
-    plt.figure(figsize=(4, 2))
+    plt.figure(figsize=(5, 3))
     librosa.display.waveshow(y, sr=sr)
     plt.title('Waveform')
     plt.xlabel('Time (s)')
@@ -209,7 +209,7 @@ def generate_spectrogram_plot(audio_file_path):
     # Generate a spectrogram
     D = librosa.amplitude_to_db(np.abs(librosa.stft(y)), ref=np.max)
 
-    plt.figure(figsize=(4, 2))
+    plt.figure(figsize=(5, 4))
     librosa.display.specshow(D, sr=sr, x_axis='time', y_axis='log')
     plt.colorbar(format='%+2.0f dB')
     plt.title('Spectrogram')
@@ -263,7 +263,7 @@ def classify():
             # Send the base64-encoded image and predictions to the frontend
             response_data = {
                 'predictions': p,
-                'base64_image': base64_conv_img,  # Add this line to include the base64 image
+                'base64_image': base64_conv_img, 
                 'base64_waveform': waveform_base64,
                 'base64_spectogram': spectrogram_base64
             }

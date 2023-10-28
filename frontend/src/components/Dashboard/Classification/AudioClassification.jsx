@@ -104,7 +104,7 @@ const AudioClassification = () => {
             },
         ];
 
-        const layout = { title: 'Classification Results', yaxis: { title: 'Percentage' } };
+        const layout = { yaxis: { title: 'Percentage' }, xaxis: { title: 'Ships' } };
 
         return (
 
@@ -113,48 +113,116 @@ const AudioClassification = () => {
                 <div className='audioClassificationResultHead'>
 
                     <div className='audioClassificationResultHeadFirst' >
-                        <h1 className='classificationResultHeading-1' > Classification Results </h1>
-                        <div className='classificationResultText' >
-                            <div>
-                                <div >
-                                    <h3>{mostSimilarCategory}</h3>
-                                    <p>{(classificationData.predictions[mostSimilarCategory] * 100).toFixed(2)}%</p>
-                                </div>
+                        <h1 className='classificationResultHeading' > Classification Results </h1>
 
-                                {otherCategories.map((key) => (
-                                    <div key={key}>
-                                        <h3>{key}</h3>
-                                        <p>{(classificationData.predictions[key] * 100).toFixed(2)}%</p>
+                        <div className='classificationResultResult' >
+
+                            <div className='classificationResultText' >
+                                <div>
+                                    <div >
+                                        <h3>{mostSimilarCategory}</h3>
+                                        <div className="py-1 flex items-center">
+                                            <progress className="progress w-56 mr-3" value={(classificationData.predictions[mostSimilarCategory] * 100).toFixed(2)} max="100"></progress>
+                                            {(classificationData.predictions[mostSimilarCategory] * 100).toFixed(2)}%
+                                        </div>
                                     </div>
-                                ))}
+
+                                    {otherCategories.map((key) => (
+                                        <div key={key}>
+                                            <h3>{key}</h3>
+                                            <div className="py-1 flex items-center">
+                                                <progress className="progress w-56 mr-3" value={(classificationData.predictions[key] * 100).toFixed(2)} max="100"></progress>
+                                                {(classificationData.predictions[key] * 100).toFixed(2)}%
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
+
+                            <div className='classificationResultText' >
+                                <h1> The sound is of ship {mostSimilarCategory}  </h1>
+                            </div>
+
                         </div>
                     </div>
 
-                    <div>
-                        <h2 className='classificationResultHeading' >Mel Spectogram </h2>
-                        <img src={`data:image/png;base64, ${classificationData.base64_image}`} alt="Classification" />
-                        <h2 className='classificationResultHeading' >Spectogram</h2>
-                        <img src={`data:image/png;base64, ${classificationData.base64_spectogram}`} alt="Classification" />
-                        <h2 className='classificationResultHeading' >Waveform</h2>
-                        <img src={`data:image/png;base64, ${classificationData.base64_waveform}`} alt="Classification" />
+
+                    <div className='audioClassificationCharts' >
+                        <div className='audioClassificationChartsSection'>
+                            <h3 className='classificationResultHeadingCharts' > Bar Chart</h3>
+                            <Plot data={barChartData} layout={layout} />
+                        </div>
+                        <div className='audioClassificationChartsSection' >
+                            <h3 className='classificationResultHeadingCharts' > Pie Chart</h3>
+                            <Plot data={pieChartData} layout={layout} />
+                        </div>
+                        <div className='audioClassificationChartsSection' >
+                            <h3 className='classificationResultHeadingCharts' > Line Chart </h3>
+                            <Plot data={lineChartData} layout={layout} />
+                        </div>
+                        <div className='audioClassificationChartsSection' >
+                            <h3 className='classificationResultHeadingCharts' > Scatter Plot </h3>
+                            <Plot data={scatterPlotData} layout={layout} />
+                        </div>
                     </div>
 
-                    <div>
-                        <h3 className='classificationResultHeading-1' >Classification Bar Chart</h3>
-                        <Plot data={barChartData} layout={layout} />
-                    </div>
-                    <div>
-                        <h3>Classification Pie Chart</h3>
-                        <Plot data={pieChartData} layout={layout} />
-                    </div>
-                    <div>
-                        <h3>Classification Line Chart</h3>
-                        <Plot data={lineChartData} layout={layout} />
-                    </div>
-                    <div>
-                        <h3>Classification Scatter Plot</h3>
-                        <Plot data={scatterPlotData} layout={layout} />
+
+                    <div className='audioClassificationMainPythonCharts' >
+
+                        <div className='audioClassificationMainPythonCharts-div1' >
+
+                            <div>
+                                <h2 className='classificationResultHeadingPythonCharts' >Mel Spectogram </h2>
+                            </div>
+
+                            <div className='audioClassificationMainPythonChartsMelspec' >
+
+                                <div className='audioClassificationMainPythonChartsMelspec1' >
+                                    <img src={`data:image/png;base64, ${classificationData.base64_image}`} alt="Classification" />
+                                </div>
+
+                                <div className='audioClassificationMainPythonChartsMelspec2' >
+                                    jfwejkbfjkewbfje
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div className='audioClassificationMainPythonCharts-div1' >
+
+                            <div>
+                                <h2 className='classificationResultHeadingPythonCharts' > Spectogram </h2>
+                            </div>
+
+                            <div className='audioClassificationMainPythonChartsMelspec' >
+                                <div className='audioClassificationMainPythonChartsMelspec2' >
+                                    jfwejkbfjkewbfje
+                                </div>
+                                <div className='audioClassificationMainPythonChartsMelspec1' >
+                                    <img src={`data:image/png;base64, ${classificationData.base64_spectogram}`} alt="Classification" />
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div className='audioClassificationMainPythonCharts-div1' >
+                            <div>
+                                <h2 className='classificationResultHeadingPythonCharts' > Waveform </h2>
+                            </div>
+
+                            <div className='audioClassificationMainPythonChartsMelspec' >
+
+                                <div className='audioClassificationMainPythonChartsMelspec1' >
+                                    <img src={`data:image/png;base64, ${classificationData.base64_waveform}`} alt="Classification" />
+                                </div>
+
+                                <div className='audioClassificationMainPythonChartsMelspec2' >
+                                    jfwejkbfjkewbfje
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -197,6 +265,7 @@ const AudioClassification = () => {
                     </div>
                 </div>
             </div>
+            
             {resultVisible && displayClassificationResult()}
         </>
 
