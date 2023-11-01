@@ -6,6 +6,9 @@ import Navbar from "../../../Dashboard/Navbar/Navbar"
 import Widgets from "../../../Dashboard/Dashboard Widgets/Widgets"
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../../../../Firebase';
+import Widgets1 from '../../../Dashboard/Dashboard Widgets/Widgets1'
+import Widgets2 from '../../../Dashboard/Dashboard Widgets/Widgets2'
+import Widgets3 from '../../../Dashboard/Dashboard Widgets/Widgets3'
 
 
 function Dashboard() {
@@ -33,12 +36,12 @@ function Dashboard() {
                         <Navbar />
                         
                         <div className="widgets">
-                            <Widgets type="dataset" />
-                            <Widgets type="ships classified" />
-                            <Widgets type="dataset" />
+                            <Widgets  />
+                            <Widgets2 />
+                            <Widgets1 />
                         </div>
 
-                        <Widgets/>
+                        <Widgets3 />
 
                     </div>
                 </div>

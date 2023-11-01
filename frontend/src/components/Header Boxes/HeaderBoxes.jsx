@@ -35,11 +35,11 @@ const HeaderBoxes = () => {
                             <img src = {box2pic} alt = "Analytics" />
                         </div>
                         <div className = "header-boxes-box2-subbox2-div2" >
-                            <h3> Batch Processing </h3>
+                            <h3> Audio Classification </h3>
                         </div>
                         <div className = "header-boxes-box2-subbox2-div3" > </div>
                         <div className = "header-boxes-box2-subbox2-div4" >
-                        The gradual accumulation of information about atomic and small-scale behaviour...
+                            The gradual accumulation of information about atomic and small-scale behaviour...
                         </div>
                     </div>
                 </div>

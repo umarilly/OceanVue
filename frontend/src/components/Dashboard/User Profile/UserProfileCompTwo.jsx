@@ -1,9 +1,6 @@
-
 import React, { useState, useEffect } from 'react';
 import './UserProfileComp.css';
-
-import { TextField } from '@mui/material';
-
+import { TextField, MenuItem } from '@mui/material';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { auth, db } from '../../../Firebase';
 
@@ -21,20 +18,15 @@ const UserProfileComp = () => {
     // Fetch user data from Firebase Firestore when the component loads
     useEffect(() => {
         const fetchData = async () => {
-            // Assuming you have the user's UID stored in your authentication state
             const userId = auth.currentUser.uid;
-
-            // Reference to the user document in Firestore
             const userDocRef = doc(db, 'Users', userId);
 
             try {
                 const docSnap = await getDoc(userDocRef);
                 if (docSnap.exists()) {
                     const userData = docSnap.data();
-                    // Update the state with user data
                     setUserFormData(userData);
                 } else {
-                    // Handle the case where the user document doesn't exist
                     console.error('No User Data Exists');
                 }
             } catch (error) {
@@ -58,9 +50,7 @@ const UserProfileComp = () => {
 
         try {
             const userId = auth.currentUser.uid;
-
             const userDocRef = doc(db, 'Users', userId);
-
             setIsUpdating(true);
 
             await updateDoc(userDocRef, {
@@ -75,12 +65,10 @@ const UserProfileComp = () => {
                 setIsUpdating(false);
                 window.location.reload();
             }, 1000);
-
         } catch (error) {
             console.error('Error updating user data: ', error);
         }
     };
-
 
     return (
         <>
@@ -95,13 +83,18 @@ const UserProfileComp = () => {
                         margin='normal'
                     />
                     <TextField
+                        select
                         label='Gender'
                         name='gender'
                         value={userFormData.gender}
                         onChange={handleInputChange}
                         fullWidth
                         margin='normal'
-                    />
+                    >
+                        <MenuItem value='male'>Male</MenuItem>
+                        <MenuItem value='female'>Female</MenuItem>
+                        <MenuItem value='other'>Other</MenuItem>
+                    </TextField>
                     <TextField
                         label='Date of Birth'
                         name='dateOfBirth'
@@ -126,19 +119,15 @@ const UserProfileComp = () => {
                         fullWidth
                         margin='normal'
                     />
-
                     <div className="updateButton">
                         <span className="setUpdateButton">
-                            <button type='submit' disabled={isUpdating} >
-                                <div className='buttonSize' > {isUpdating ? 'Updating ...' : 'Update'} </div>
+                            <button type='submit' disabled={isUpdating}>
+                                <div className='buttonSize'>{isUpdating ? 'Updating ...' : 'Update'}</div>
                             </button>
                         </span>
                     </div>
-
                 </form>
-
             </div>
-
         </>
     );
 };

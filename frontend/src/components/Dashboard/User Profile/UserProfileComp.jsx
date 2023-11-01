@@ -83,38 +83,38 @@ const UserProfileComp = () => {
 
     const handlePasswordReset = async (e) => {
         e.preventDefault();
-    
+
         if (newPassword !== confirmPassword) {
             setError("Passwords do not match");
             return;
         }
-    
+
         if (oldPassword === newPassword) {
             setError("New password should be different from the old password");
             return;
         }
-    
+
         try {
             const user = auth.currentUser;
             const credential = EmailAuthProvider.credential(user.email, oldPassword);
             await reauthenticateWithCredential(user, credential);
-    
+
             // Update the password in the authentication
             await updatePassword(user, newPassword);
-    
+
             // Update the password in the Firestore document
             const userId = auth.currentUser.uid;
             const userDocRef = doc(db, 'Users', userId);
             await updateDoc(userDocRef, {
                 password: newPassword, // Change 'password' to your password field name in the Firestore document
             });
-    
+
             // Clear the input fields and error message
             setOldPassword('');
             setNewPassword('');
             setConfirmPassword('');
             setError('');
-    
+
             // Display success message or perform any other actions on success
             console.log('Password updated successfully');
         } catch (error) {
@@ -123,91 +123,104 @@ const UserProfileComp = () => {
             setError('Error updating password. Please try again.');
         }
     };
-    
-    
-    
+
+
+
 
     return (
         <>
-            <div className='userProfileCompMain'>
-                <form onSubmit={handleSubmit}>
-                    <TextField
-                        label='Name'
-                        name='username'
-                        value={userFormData.username}
-                        onChange={handleInputChange}
-                        fullWidth
-                        margin='normal'
-                    />
-                    <TextField
-                        label='Email'
-                        name='email'
-                        type='email'
-                        value={userFormData.email}
-                        fullWidth
-                        margin='normal'
-                        disabled
-                    />
 
-                    <div className="updateButton">
-                        <span className="setUpdateButton">
-                            <button type='submit' disabled={isUpdating} >
-                                <div className='buttonSize' > {isUpdating ? 'Updating ...' : 'Update'} </div>
-                            </button>
-                        </span>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }} >
+                <div>
+                    <h1 style={{ fontSize: '25px', fontWeight: '900', marginTop: '30px', color: 'black' }} > Personal Information </h1>
+                </div>
+            </div >
+
+                <div className='userProfileComp' >
+
+                    <div className='userProfileCompMain'>
+                        <div className='userProfileCompMainWidthSetting' >
+                            <form onSubmit={handleSubmit} >
+                                <TextField
+                                    label='Name'
+                                    name='username'
+                                    value={userFormData.username}
+                                    onChange={handleInputChange}
+                                    fullWidth
+                                    margin='normal'
+                                />
+                                <TextField
+                                    label='Email'
+                                    name='email'
+                                    type='email'
+                                    value={userFormData.email}
+                                    fullWidth
+                                    margin='normal'
+                                    disabled
+                                />
+
+                                <div className="updateButton">
+                                    <span className="setUpdateButton">
+                                        <button type='submit' disabled={isUpdating} >
+                                            <div className='buttonSize' > {isUpdating ? 'Updating ...' : 'Update'} </div>
+                                        </button>
+                                    </span>
+                                </div>
+                            </form>
+                        </div>
                     </div>
 
-                </form>
-
-            </div>
-
-            <div className='userProfileCompMain'>
-                <form onSubmit={handlePasswordReset}>
-                    <TextField
-                        label='Old Password'
-                        name='oldPassword'
-                        type='password'
-                        value={oldPassword}
-                        onChange={(e) => setOldPassword(e.target.value)}
-                        fullWidth
-                        margin='normal'
-                    />
-                    <TextField
-                        label='New Password'
-                        name='newPassword'
-                        type='password'
-                        value={newPassword}
-                        onChange={(e) => setNewPassword(e.target.value)}
-                        fullWidth
-                        margin='normal'
-                    />
-                    <TextField
-                        label='Confirm New Password'
-                        name='confirmPassword'
-                        type='password'
-                        value={confirmPassword}
-                        onChange={(e) => setConfirmPassword(e.target.value)}
-                        fullWidth
-                        margin='normal'
-                    />
-                    {error && <div style={{ color: 'red' }}>{error}</div>}
-                    <div className="updateButton">
-                        <span className="setUpdateButton">
-                            <button type='submit'>
-                                <div className='buttonSize' > Reset Password </div>
-                            </button>
-                        </span>
+                    <div className='userProfileCompMain2'>
+                        <div className='userProfileCompMainWidthSetting2' >
+                            <form onSubmit={handlePasswordReset}>
+                                <TextField
+                                    label='Old Password'
+                                    name='oldPassword'
+                                    type='password'
+                                    value={oldPassword}
+                                    onChange={(e) => setOldPassword(e.target.value)}
+                                    fullWidth
+                                    margin='normal'
+                                />
+                                <TextField
+                                    label='New Password'
+                                    name='newPassword'
+                                    type='password'
+                                    value={newPassword}
+                                    onChange={(e) => setNewPassword(e.target.value)}
+                                    fullWidth
+                                    margin='normal'
+                                />
+                                <TextField
+                                    label='Confirm New Password'
+                                    name='confirmPassword'
+                                    type='password'
+                                    value={confirmPassword}
+                                    onChange={(e) => setConfirmPassword(e.target.value)}
+                                    fullWidth
+                                    margin='normal'
+                                />
+                                {error && <div style={{ color: 'red' }}>{error}</div>}
+                                <div className="updateButton">
+                                    <span className="setUpdateButton">
+                                        <button type='submit'>
+                                            <div className='buttonSize' > Reset Password </div>
+                                        </button>
+                                    </span>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                </form>
-            </div>
 
-            <div className='userProfileCompMain'>
+                </div>
 
-                <UserProfileCompTwo />
-            </div>
+                <div className='userProfileCompMain3'>
 
-        </>
-    );
+                    <UserProfileCompTwo />
+                </div>
+
+            </>
+            );
 };
 
-export default UserProfileComp;
+            export default UserProfileComp;

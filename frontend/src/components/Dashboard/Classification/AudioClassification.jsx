@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import Plot from 'react-plotly.js';
 import './audio.css';
+import AudioFileOutlinedIcon from '@mui/icons-material/AudioFileOutlined';
+import DoneAllOutlinedIcon from '@mui/icons-material/DoneAllOutlined';
+import DirectionsBoatFilledOutlinedIcon from '@mui/icons-material/DirectionsBoatFilledOutlined';
 
 const AudioClassification = () => {
     const [resultVisible, setResultVisible] = useState(false);
@@ -119,6 +122,7 @@ const AudioClassification = () => {
 
                             <div className='classificationResultText' >
                                 <div>
+
                                     <div >
                                         <h3>{mostSimilarCategory}</h3>
                                         <div className="py-1 flex items-center">
@@ -137,10 +141,15 @@ const AudioClassification = () => {
                                         </div>
                                     ))}
                                 </div>
+
                             </div>
 
-                            <div className='classificationResultText' >
-                                <h1> The sound is of ship {mostSimilarCategory}  </h1>
+                            <div className='classificationResultText'>
+                                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', height: '100%' }}>
+                                    <h1 style={{ fontSize: '20px' , marginTop: '10px' , marginBottom: '5px'}} > The sound is classify as following ship  </h1>
+                                    <h1 style={{ fontSize: '25px', fontWeight: '900' , margin: '10px'}} > {mostSimilarCategory}</h1>
+                                    <DirectionsBoatFilledOutlinedIcon sx={{ fontSize: 80 ,  marginBottom: '5px' }} />
+                                </div>
                             </div>
 
                         </div>
@@ -182,7 +191,7 @@ const AudioClassification = () => {
                                 </div>
 
                                 <div className='audioClassificationMainPythonChartsMelspec2' >
-                                    jfwejkbfjkewbfje
+                                In the following picture, the mel spectrogram is displaying, which is used for visualizing the frequency components of a signal, emphasizing the perceptually relevant information by scaling the frequency axis according to the human auditory system's response.
                                 </div>
                             </div>
 
@@ -196,7 +205,7 @@ const AudioClassification = () => {
 
                             <div className='audioClassificationMainPythonChartsMelspec' >
                                 <div className='audioClassificationMainPythonChartsMelspec2' >
-                                    jfwejkbfjkewbfje
+                                In the following picture, the spectrogram is displaying, which is used for representing the spectrum of frequencies of a signal as it varies with time, providing a visual representation of the changing spectral content over time.
                                 </div>
                                 <div className='audioClassificationMainPythonChartsMelspec1' >
                                     <img src={`data:image/png;base64, ${classificationData.base64_spectogram}`} alt="Classification" />
@@ -218,7 +227,7 @@ const AudioClassification = () => {
                                 </div>
 
                                 <div className='audioClassificationMainPythonChartsMelspec2' >
-                                    jfwejkbfjkewbfje
+                                In the following picture, the waveform is displaying, which is used for illustrating the amplitude of a sound wave as it varies with time, offering a detailed depiction of the signal's amplitude and temporal characteristics.
                                 </div>
                             </div>
                         </div>
@@ -241,7 +250,7 @@ const AudioClassification = () => {
 
                                 <div className="custom-file">
                                     <label className="custom-file-label" htmlFor="audioFile" data-file-name={selectedFileName}>
-                                        {selectedFileName}
+                                        {selectedFileName} < AudioFileOutlinedIcon style={{ marginLeft: '15px' }} />
                                     </label>
                                     <input
                                         type="file"
@@ -255,8 +264,8 @@ const AudioClassification = () => {
                                 </div>
 
                                 <div className="button-wrapper">
-                                    <button type="submit" className="button-choose">
-                                        Classify
+                                    <button type="submit" className="button-chooseen" style={{ backgroundColor: '#538aab' }}>
+                                        Classify < DoneAllOutlinedIcon style={{ marginLeft: '15px' }} />
                                     </button>
                                 </div>
 
@@ -265,7 +274,7 @@ const AudioClassification = () => {
                     </div>
                 </div>
             </div>
-            
+
             {resultVisible && displayClassificationResult()}
         </>
 

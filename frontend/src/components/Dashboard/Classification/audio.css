@@ -23,8 +23,9 @@
 
 .audio-upload-container h4 {
   font-size: 24px;
-  color: #333;
+  color: grey;
   margin-bottom: 20px;
+  font-weight: 900;
 }
 
 .custom-file {
@@ -32,10 +33,10 @@
 }
 
 .custom-file-label {
-  background-color: #007bff;
+  background-color: #538aab;
   color: #fff;
-  border: 2px solid #007bff;
   border-radius: 5px;
+  font-weight: 900;
   padding: 10px 20px;
   display: inline-block;
   cursor: pointer;
@@ -43,8 +44,7 @@
 }
 
 .custom-file-label:hover {
-  background-color: #0056b3;
-  border-color: #0056b3;
+  border-color: rgb(4, 58, 115);
 }
 
 .custom-file-input {
@@ -56,19 +56,15 @@
   justify-content: center;
 }
 
-.button-choose {
-  background-color: #007bff;
+.button-chooseen {
   color: #fff;
   border: none;
   border-radius: 5px;
   padding: 10px 20px;
-  font-size: 18px;
+  font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.button-choose:hover {
-  background-color: #c7d1dc;
+  font-weight: 900;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 /* Classification Results  */
@@ -127,6 +123,7 @@
   min-height: 250px;
 }
 
+
 /* Plotly Charts */
 
 .audioClassificationCharts {
@@ -184,6 +181,7 @@
   font-weight: bold ;
   font-size: 25px;
   margin-top: 20px;
+  margin-bottom: -20px;
 }
 
 .audioClassificationMainPythonChartsMelspec {
@@ -205,10 +203,11 @@
 
 .audioClassificationMainPythonChartsMelspec2 {
   width: 35%;
-  height: 100px;
+  min-height: 100px;
   padding: 15px;
   border: 1px solid rgb(188, 188, 188);
   border-radius: 20px;
+  font-size: 18px;
 }
 
 

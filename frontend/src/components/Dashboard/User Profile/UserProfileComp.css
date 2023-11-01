@@ -1,14 +1,58 @@
 
+.userProfileComp {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-direction: row;
+    height: auto ;
+    background-color: white;
+}
+
 .userProfileCompMain {
     flex: 1;
     display: flex;
     justify-content: space-between;
     min-height: 35vh;
-    border: 1px solid rgb(188, 188, 188);
+    /* border: 1px solid rgb(188, 188, 188); */
     border-radius: 20px;
     background-color: white;
-    margin: 22px 30px 15px 20px;
+    margin: 22px 10px 15px 30px;
     padding: 20px;
+}
+
+.userProfileCompMain2 {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    min-height: 35vh;
+    /* border: 1px solid rgb(188, 188, 188); */
+    border-radius: 20px;
+    background-color: white;
+    margin: 22px 30px 15px 10px;
+    padding: 20px;
+}
+
+.userProfileCompMain3 {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    min-height: 35vh;
+    border-top: 2px solid rgb(188, 188, 188);
+    width: 95%;
+    background-color: white;
+    margin: -10px 20px 20px 20px;
+    padding: 20px;
+}
+
+
+
+.userProfileCompMainWidthSetting {
+    width: 100%;
+}
+
+.userProfileCompMainWidthSetting2 {
+    width: 100%;
 }
 
 .updateButton {
