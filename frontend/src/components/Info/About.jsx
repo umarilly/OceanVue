@@ -16,10 +16,10 @@ const About = () => {
                             <h1 className='mainAbout1Box1Heading' > Acoustic Analysis </h1>
                             <div className='mainAbout1Box1Content'>
                                 <div>
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores doloribus minus, veritatis enim obcaecati facilis reiciendis voluptatum expedita provident sequi, ipsum modi praesentium odio quibusdam non laborum sed. Iure, similique?
+                                    Acoustic analysis employs advanced signal processing to extract valuable insights from sound waves, enabling accurate classification and identification of sound sources in diverse applications.
                                 </div>
                                 <div style={{ marginTop: '10px' }}>
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores doloribus minus, veritatis enim obcaecati facilis reiciendis voluptatum expedita provident sequi, ipsum modi praesentium odio quibusdam non laborum sed. Iure, similique?
+                                    Through the integration of cutting-edge algorithms, acoustic analysis facilitates precise pattern recognition, contributing to improved diagnostics in fields such as speech recognition, music analysis, and environmental monitoring.
                                 </div>
                             </div>
                         </div>
@@ -35,11 +35,11 @@ const About = () => {
                         <div className='mainAbout2Box1' >
                             <h1 className='mainAbout2Box1Heading' > Working Mechanism </h1>
                             <div className='mainAbout2Box1Content'>
-                            <div>
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores doloribus minus, veritatis enim obcaecati facilis reiciendis voluptatum expedita provident sequi, ipsum modi praesentium odio quibusdam non laborum sed. Iure, similique?
+                                <div>
+                                    Ocean Vue employs advanced signal processing and machine learning techniques for precise ship acoustic analysis. By integrating noise reduction and feature extraction, it accurately classifies ship types and provides detailed frequency analysis and classification data.
                                 </div>
                                 <div style={{ marginTop: '10px' }}>
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores doloribus minus, veritatis enim obcaecati facilis reiciendis voluptatum expedita provident sequi, ipsum modi praesentium odio quibusdam non laborum sed. Iure, similique?
+                                    Featuring a user-friendly interface, 'Ocean Vue' facilitates seamless processing of ship acoustic files. Its streamlined queue management optimizes processing based on infrastructure capabilities, while comprehensive in-app documentation guides users through the upload process and aids in result interpretation, ensuring efficient and accurate ship identification.
                                 </div>
                             </div>
                         </div>
@@ -47,13 +47,16 @@ const About = () => {
 
                     <div className='mainAbout3' >
                         <div className='mainAbout3Box1' >
-                            <h1 className='mainAbout3Box1Heading' > Working Mechanism </h1>
+                            <h1 className='mainAbout3Box1Heading' > Application Workflow </h1>
                             <div className='mainAbout3Box1Content'>
-                            <div>
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores doloribus minus, veritatis enim obcaecati facilis reiciendis voluptatum expedita provident sequi, ipsum modi praesentium odio quibusdam non laborum sed. Iure, similique?
+                                <div>
+                                    OceanVue, developed using React.js, Python, Flask, and Firebase, enables users to upload ship acoustic recordings for classification. The application utilizes a ResNet 50 Deep Learning model for precise ship classification.
                                 </div>
                                 <div style={{ marginTop: '10px' }}>
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores doloribus minus, veritatis enim obcaecati facilis reiciendis voluptatum expedita provident sequi, ipsum modi praesentium odio quibusdam non laborum sed. Iure, similique?
+                                    Upon accessing the home page, users can sign up or log in, with options for email or Google authentication. The dashboard presents various features, including ship classification, profile updates, logout, and a history section for reviewing past classification reports.
+                                </div>
+                                <div style={{ marginTop: '10px' }}>
+                                    In the ship classification section, users can upload ship acoustic signature files, initiate the classification process, and view generated visual and analytical reports on the webpage. The reports are also stored in the database as PDFs for future reference.
                                 </div>
                             </div>
                         </div>

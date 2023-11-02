@@ -51,7 +51,7 @@ const Header = () => {
                 </div>
                 <div className="main-header-box1-div2">
                     <p>
-                        Remember to test your changes across different devices and browsers to ensure that the "Raleway" font is displaying as expected and maintaining readability. Remember to test your changes across different devices and browsers to ensure that the "Raleway" font is displaying as expected and maintaining readability.
+                        OceanVue is a web based acoustic signature classifcation platform. This platform is build using a dataset of four different classes and trained using Resnet 50. User will upload any audio file of the ship shound, and the algorithm will classify the ship type
                     </p>
                 </div>
 

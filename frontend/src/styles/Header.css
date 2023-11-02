@@ -23,7 +23,7 @@
     height: auto;
     display: block;
     color: white;
-    margin: -80px 0px 0px 0px;
+    margin: -90px 0px 0px 0px;
     animation: slideRight 1s ease-in-out;
 }
 
@@ -42,6 +42,11 @@
     margin: 10px 10px 20px 50px;
     font-variant: all-small-caps;
     text-align: justify;
+}
+
+.main-header-box1-div2 p {
+    font-size: 19px;
+    text-transform: capitalize;
 }
 
 .main-header-box1-div3 {
