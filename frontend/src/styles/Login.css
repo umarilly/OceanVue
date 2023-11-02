@@ -23,8 +23,8 @@
 .login-container-box1 {
     width:25%;
     height: auto;
-    margin-top: 30px;
-    margin-bottom: 30px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .login-container-box1-img {
@@ -44,7 +44,6 @@
 .login-container-box2 {
     width: 30%;
     height: auto;
-    margin-bottom: 60px;
     border-radius: 50px;
     background: rgba(255, 255, 255, 0.80);
     display: flex;
@@ -61,10 +60,6 @@
     flex-direction: column;
 }
 
-.login-container-box2-heading {
-    margin: 60px 10px 10px 20px;
-}
-
 .login-container-box2-form {
     width: 100%;
     max-width: 500px;
@@ -73,6 +68,7 @@
     height: auto;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 30px;
 }
 
 .form-group-login {
@@ -183,15 +179,6 @@
 
 .google-button:hover {
     background: rgb(96, 95, 95);
-}
-
-.login-container-box2-borderbottom {
-    margin: 20px 20px;
-    border-bottom: 2px solid #7A7676;
-    background: #7A7676;
-    width: 50%;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .login-container-box2-already {

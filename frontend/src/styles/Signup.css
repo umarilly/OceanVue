@@ -14,6 +14,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     background: #e7e7e7;
 }
 
@@ -30,9 +31,8 @@
 }
 
 .left-1 {
-    width: 30%;
+    width: 100%;
     height: 130px;
-    margin: 0px 10px 10px 50px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -48,54 +48,12 @@
     width: 80%;
 }
 
-.left-2 {
-    width: 70%;
-    height: auto;
-    margin: -20px 20px 20px 20px;
-    display: flex;
-    align-self: center;
-    align-items: center;
-    justify-content: center;
-}
-
-.left-2 img {
-    max-width: 100%;
-}
-
-.left-3 {
-    width: 40%;
-    height: auto;
-    align-self: center;
-    margin: 20px 20px 40px 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.left-3-btn {
-    padding: 12px 20px;
-    font-size: 18px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: #526d82;
-    color: white;
-    box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25);
-    transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
-}
-
-.left-3-btn:hover {
-    background-color: #44576a;
-    transform: translateY(-2px);
-    box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.3);
-}
-
 /* Main Container - Right Side */
 
 .signup-container-right {
-    width: 55%;
+    width: 45%;
     height: auto;
-    border-radius: 45px 0px 0px 45px;
+    border-radius: 45px;
     background: #fff;
     backdrop-filter: blur(2px);
     display: flex;
@@ -114,13 +72,15 @@
 }
 
 .signup-heading {
+    font-size: 25px;
+    font-weight: 900;
     margin: 30px 0px 30px 0px;
 }
 
 .signup-form {
     width: 100%;
-    max-width: 500px;
-    padding: 20px;
+    max-width: 450px;
+    padding-bottom: 20px;
     background-color: #fff;
     border-radius: 10px;
     height: auto;
@@ -208,6 +168,19 @@
     align-items: center;
 }
 
+.form-button-signup {
+    padding: 10px 20px;
+    background-color: #07689f;
+    color: #fff;
+    width: 100%;
+    height: auto;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
 .form-button {
     padding: 10px 20px;
     background-color: #07689f;
@@ -248,7 +221,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    width: 100%;
+    width: 75%;
 }
 
 .div-for-google-btn {
@@ -264,7 +237,7 @@
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
-    width: 40%;
+    width: 100%;
     height: auto;
     font-size: 16px;
     padding: 10px;
@@ -290,20 +263,21 @@
 
 .text-for-already-account {
     margin: 18px;
+    font-weight: bold;
+    font-size: 18px;
 }
 
 .already-account {
-    width: 40%;
+    width: 100%;
     height: auto;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.already-account button {
+.already-account-button {
     padding: 12px 20px;
     font-size: 16px;
-    border: none;
     border-radius: 5px;
     cursor: pointer;
     background-color: #538aab;

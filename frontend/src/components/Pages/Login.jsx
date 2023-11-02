@@ -26,21 +26,21 @@ const Login = () => {
             ...prev,
             [name]: value,
         }));
-        setErrorMsg(''); // Clear error message when the user starts typing.
+        setErrorMsg(''); 
     };
 
     const handleSubmission = async (event) => {
-        event.preventDefault(); // Prevent default form submission behavior.
+        event.preventDefault();
 
         try {
             if (!values.Email || !values.Password) {
-                setErrorMsg('Please fill in all the required fields.');
+                setErrorMsg( 'Please fill in all the required fields' );
             } else {
                 await signInWithEmailAndPassword(auth, values.Email, values.Password);
                 navigate('/');
             }
         } catch (error) {
-            setErrorMsg('Invalid email or password. Please try again.');
+            setErrorMsg( 'Invalid email or password. Please try again.' );
             console.error('Error:', error.message);
         }
     };
@@ -50,13 +50,11 @@ const Login = () => {
 
         try {
             const result = await signInWithPopup(auth, provider);
-            // Handle successful login with Google
-            // You can access user information from result.user
-            console.log('User logged in with Google:', result.user);
-            navigate('/'); // Redirect to the home page after successful login
+            console.log('User logged in with Google : ', result.user);
+            navigate('/');
         } catch (error) {
-            // Handle login error
-            console.error('Google login error:', error);
+            console.error('Google login error : ', error);
+            setErrorMsg('Google login Failed');
         }
     };
 
@@ -76,10 +74,6 @@ const Login = () => {
 
             <div className="login-container-box2">
                 <div className="login-container-box2-sub">
-                    <div className="login-container-box2-heading">
-                        <h2>Welcome Back</h2>
-                    </div>
-
                     <div className="login-container-box2-form">
                         <form onSubmit={handleSubmission}>
                             <div className="form-group-login">
@@ -112,6 +106,7 @@ const Login = () => {
                                     <input
                                         type="password"
                                         className="form-input-login"
+                                        style={{ border : '0px' }}
                                         id="input2"
                                         name="Password"
                                         placeholder="Please write your password"
@@ -127,7 +122,7 @@ const Login = () => {
 
                             <div>
                                 <div>
-                                    <h4>{errorMsg}</h4>
+                                    <h4 style={{ color : 'red'  , marginBottom: '20px' }} > {errorMsg} </h4>
                                 </div>
                             </div>
 
@@ -140,7 +135,7 @@ const Login = () => {
                     </div>
 
                     <div className="login-container-box2-or">
-                        <h3>OR</h3>
+                        <h3 style={{ fontWeight: '900' }} >OR</h3>
                     </div>
 
                     <div className="login-container-box2-google">
@@ -155,8 +150,6 @@ const Login = () => {
                         </button>
                     </div>
 
-                    <div className="login-container-box2-borderbottom"></div>
-
                     <div className="login-container-box2-already">
                         <div className="Extra-out-google-btn-login">
                             <div className="text-for-already-account-login">
@@ -164,7 +157,7 @@ const Login = () => {
                             </div>
                             <div className="already-account-login">
                                 <RouterLink to="/signup">
-                                    <button>Sign Up</button>
+                                    <button> Sign Up </button>
                                 </RouterLink>
                             </div>
                         </div>

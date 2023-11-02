@@ -8,36 +8,9 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfi
 import zxcvbn from 'zxcvbn';
 import '../../styles/Signup.css';
 import mainLogo from '../../images/main-logo.png';
-import signupImg from '../../images/signup-img.png';
 import Lock from '../../images/lock.png';
 import Message from '../../images/message.png';
 import Profile from '../../images/profile.png';
-
-const handleGoogleSignUp = async () => {
-    const provider = new GoogleAuthProvider();
-
-    try {
-        // Sign in with Google provider to get user information
-        const result = await signInWithPopup(auth, provider);
-
-        // Check if the user already exists with the same email
-        const emailExists = await checkIfEmailExists(result.user.email);
-
-        if (emailExists) {
-            // User already exists, show a message or take appropriate action
-            console.log('User already exists with this email.');
-            // You can also sign in the user here if they already have an account
-            await signInWithEmailAndPassword(auth, result.user.email, 'password'); // Use a temporary password or another mechanism
-        } else {
-            // User doesn't exist, proceed with sign-up logic
-            // You can create a new account with the Google user information here if needed
-            console.log('User signed up with Google:', result.user);
-        }
-    } catch (error) {
-        // Handle sign-up error
-        console.error('Google sign-up error:', error);
-    }
-};
 
 
 const Signup = () => {
@@ -74,9 +47,29 @@ const Signup = () => {
         }
     };
 
+    const handleGoogleSignUp = async () => {
+        const provider = new GoogleAuthProvider();
+
+        try {
+            const result = await signInWithPopup(auth, provider);
+            const emailExists = await checkIfEmailExists(result.user.email);
+
+            if (emailExists) {
+                console.log('User already exists with this email.');
+                await signInWithEmailAndPassword(auth, result.user.email, 'password');
+            } else {
+                console.log('User signed up with Google:', result.user);
+                navigate('/');
+
+            }
+        } catch (error) {
+            console.error('Google sign-up error:', error);
+        }
+    };
+
     const handleSubmission = async (event) => {
         event.preventDefault();
-    
+
         if (!formValues.Username || !formValues.Email || !formValues.Password) {
             setErrorMsg("Please fill in all the required fields.");
         } else if (formValues.Password !== formValues.ConfirmPassword) {
@@ -87,13 +80,9 @@ const Signup = () => {
                 setErrorMsg("Password is too weak. Please choose a stronger password.");
             } else {
                 try {
-                    // Create the user with email and password
                     const userCredential = await createUserWithEmailAndPassword(auth, formValues.Email, formValues.Password);
-    
-                    // Set the user's display name
                     await updateProfile(userCredential.user, { displayName: formValues.Username });
-    
-                    // Create a user document in Firestore
+
                     const userDocRef = doc(db, 'Users', userCredential.user.uid);
                     const userData = {
                         username: formValues.Username,
@@ -102,15 +91,14 @@ const Signup = () => {
 
                     };
                     await setDoc(userDocRef, userData);
-    
-                    // Clear form values
+
                     setFormValues({
                         Username: "",
                         Email: "",
                         Password: "",
                         ConfirmPassword: "",
                     });
-    
+
                     navigate('/');
                 } catch (error) {
                     setErrorMsg(error.message);
@@ -118,24 +106,14 @@ const Signup = () => {
             }
         }
     };
-    
-
 
     return (
         <div className='signup-container' >
-            <div className='signup-container-left'>
-                <div className='left-1'>
-                    <RouterLink to="/"><img src={mainLogo} alt="Ocean Vue" /></RouterLink>
-                </div>
-                <div className='left-2'> <img src={signupImg} alt="Ocean Vue" /> </div>
-                <div className='left-3'>
-                    <RouterLink to="/">
-                        <button className="left-3-btn" >
-                            Back To Home
-                        </button>
-                    </RouterLink>
-                </div>
+
+            <div className='signup-container-left left-1'>
+                <RouterLink to="/"><img src={mainLogo} alt="Ocean Vue" /></RouterLink>
             </div>
+
 
             <div className='signup-container-right'>
                 <div className='signup-container-right-sub'>
@@ -153,6 +131,7 @@ const Signup = () => {
                                 <input
                                     type='text'
                                     className='form-input'
+                                    style={{ border: '0px' }}
                                     id='input1'
                                     name='Username'
                                     placeholder='Please Enter your name'
@@ -167,6 +146,7 @@ const Signup = () => {
                                 <input
                                     type='email'
                                     className='form-input'
+                                    style={{ border: '0px' }}
                                     id='input2'
                                     name='Email'
                                     placeholder='Please write a valid Email'
@@ -181,6 +161,7 @@ const Signup = () => {
                                 <input
                                     type='password'
                                     className='form-input'
+                                    style={{ border: '0px' }}
                                     id='input3'
                                     name='Password'
                                     placeholder='Please write your password'
@@ -202,6 +183,7 @@ const Signup = () => {
                                 <input
                                     type='password'
                                     className='form-input'
+                                    style={{ border: '0px' }}
                                     id='input4'
                                     name='ConfirmPassword'
                                     placeholder='Please re-write your password'
@@ -211,22 +193,24 @@ const Signup = () => {
                             </div>
 
                         </div>
+
                         <div>
                             <div>
-                                <h4> {errorMsg} </h4>
+                                <h4 style={{ color: 'red', marginBottom: '20px' }}  > {errorMsg} </h4>
                             </div>
                         </div>
+
                         <div className='pre-btn-signup' >
                             <button
                                 type='submit'
-                                className='form-button'
+                                className='form-button-signup'
                             > Sign Up
                             </button>
                         </div>
                     </form>
 
                     <div className='outer-form' >
-                        <h3 style={{ color: 'black', margin: '10px 30px 30px 30px' }}> OR </h3>
+                        <h3 style={{ fontWeight: '900', fontSize: '20px', color: 'black', margin: '0px 0px 20px 0px' }}> OR </h3>
                         <div className='div-for-google-btn' >
                             <button className='google-button' onClick={handleGoogleSignUp}>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
@@ -240,10 +224,10 @@ const Signup = () => {
                         </div>
 
                         <div className='Extra-out-google-btn' >
-                            <p className='text-for-already-account'> `Already have an account ? `</p>
+                            <p className='text-for-already-account'> Already have an account ? </p>
                             <div className="already-account" >
                                 <RouterLink to="/login">
-                                    <button>
+                                    <button className='already-account-button'>
                                         Log In
                                     </button>
                                 </RouterLink>
