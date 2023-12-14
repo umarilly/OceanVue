@@ -7,6 +7,7 @@ import SailingIcon from '@mui/icons-material/Sailing';
 import PersonIcon from '@mui/icons-material/Person';
 import LogoutIcon from '@mui/icons-material/Logout';
 import HomeIcon from '@mui/icons-material/Home';
+import HistoryIcon from '@mui/icons-material/History';
 
 import mainLogo from '../../../images/main-logo.png';
 import mainLogoMbl from '../../../images/main-logo-mbl.png';
@@ -33,6 +34,10 @@ function Dashboard() {
 
     const userProfile = () => {
         navigate('/UserProfile');
+    }
+
+    const history = () => {
+        navigate('/History');
     }
 
     const handleLogout = async () => {
@@ -71,6 +76,13 @@ function Dashboard() {
                             <SailingIcon className='icon' />
                             <span>
                                 Classify Ship
+                            </span>
+                        </li>
+
+                        <li onClick={history} >
+                            <HistoryIcon className='icon' />
+                            <span>
+                                History
                             </span>
                         </li>
 
@@ -126,8 +138,12 @@ function Dashboard() {
                             <SailingIcon className='iconMbl' />
                         </li>
 
+                        <li onClick={history}>
+                            <HistoryIcon className='iconMbl' />
+                        </li>
+
                         <p className="titleMbl"> Profile </p>
-                        <li>
+                        <li onClick={userProfile}>
                             <PersonIcon className='iconMbl' />
                         </li>
 

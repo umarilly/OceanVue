@@ -11,6 +11,7 @@ import ForgotPassword from './components/Pages/ForgotPassword';
 import Dashboard from './components/Pages/Dashboard Pages/1. Dashboard - Home/Dashboard';
 import ClassifyShip from './components/Pages/Dashboard Pages/2. Dashboard - Classify Ship/ClassifyShip';
 import UserProfile from './components/Pages/Dashboard Pages/3. Dashboard - User Profile/UserProfile';
+import History from './components/Pages/Dashboard Pages/4. Dashboard - History/History';
 
 function App() {
     return (
@@ -24,6 +25,7 @@ function App() {
                     <Route path="/dashboard" element={< Dashboard />} />
                     <Route path="/userProfile" element={< UserProfile />} />
                     <Route path="/classifyship" element={< ClassifyShip />} />
+                    <Route path="/history" element={< History />} />
                 </Routes>
             </Router>
         </>
