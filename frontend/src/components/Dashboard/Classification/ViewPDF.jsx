@@ -48,10 +48,10 @@ function ViewPDF() {
             {pdfUrls.length > 0 ? (
                 <div className='history button-wrapperr'>
                     {pdfUrls.map((pdfUrl, index) => (
-                        <button
+                        <button 
                             key={index}
                             onClick={() => handleDownloadClick(pdfUrl)}
-                            style={{ backgroundColor: '#538aab', margin: '15px 0px 10px 0px' }}
+                            style={{margin: '15px 0px 10px 0px' }}
                             className='button-chooseenn'
                         >
                             {index + 1} : Download PDF
@@ -59,7 +59,7 @@ function ViewPDF() {
                     ))}
                 </div>
             ) : (
-                <p>No PDF URLs available</p>
+                <p></p>
             )}
         </div>
     );
