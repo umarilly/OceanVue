@@ -8,10 +8,10 @@ import Footer from "../Info/Footer";
 const Home = () => {
     return (
         <div>
-            < MainNavbar / >
-            < Header / >
-            < HeaderBoxes / >
-            < About / >
+            < MainNavbar />
+            < Header />
+            < HeaderBoxes />
+            < About />
             < Footer />
         </div>
     );
